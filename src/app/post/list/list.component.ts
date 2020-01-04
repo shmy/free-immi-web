@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {PostService} from '../post.service';
 import {LoadStatus} from '../../shared/enum/load-status.enum';
 import {fromEvent, Subscription, timer} from 'rxjs';
-import {debounce, filter, map, tap} from 'rxjs/operators';
+import {debounce, filter, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -14,7 +14,7 @@ export class ListComponent implements OnInit, OnDestroy {
     private postService: PostService,
   ) {
   }
-
+  @ViewChild('container', {static: true}) container: ElementRef<HTMLDivElement> = null;
   loadStatus: LoadStatus = new LoadStatus();
   posts: any[] = [];
   $scroll: Subscription = null;
@@ -36,16 +36,13 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   bind() {
-    this.$scroll = fromEvent(window, 'scroll')
+    const el = this.container.nativeElement;
+    const {height} = this.container.nativeElement.getBoundingClientRect();
+    this.$scroll = fromEvent(el, 'scroll')
       .pipe(
         debounce(() => timer(300)),
         filter(event => {
-          const windowHeight = window.innerHeight;
-          const scrollHeight = document.documentElement.scrollHeight;
-          const scrollTop = document.documentElement.scrollTop;
-          if (windowHeight + scrollTop >= scrollHeight - 60) {
-            return true;
-          }
+          return (height + el.scrollTop >= el.scrollHeight - 60);
         }),
         tap(() => {
           this.fetch();

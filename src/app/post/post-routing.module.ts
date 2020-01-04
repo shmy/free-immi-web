@@ -10,6 +10,7 @@ import {MainComponent} from './main/main.component';
 import {MakeComponent} from './make/make.component';
 import {RichEditorComponent} from '../shared/rich-editor/rich-editor.component';
 import {FormsModule} from "@angular/forms";
+import {ImmiBackTopComponent} from "../shared/immi-back-top/immi-back-top.component";
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    ImmiBackTopComponent,
     RichEditorComponent,
     MainComponent,
     MakeComponent,

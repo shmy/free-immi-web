@@ -25,7 +25,7 @@ const RICH_VALUE_ACCESSOR: any = {
 export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @ViewChild('container', {static: true}) container;
   @ViewChild('toolbar', {static: true}) toolbar;
-  @Output('height') height = '100px';
+  @Input('height') height = '100px';
   @Input('placeholder') placeholder = '';
   onChange: (s: string) => void = null;
   editor: any = null;

@@ -1,25 +1,28 @@
-<div class="container box-shadow">
-  <div class="post-toolbar">
-    <div>
-      <a href="">最新</a>
-      <a href="">推荐</a>
-      <a href="">热门</a>
+<div #container class="post-fulled post-scroll">
+  <div class="post-layout-container shadow">
+    <div class="post-toolbar">
+      <div>
+        <a href="">最新</a>
+        <a href="">推荐</a>
+        <a href="">热门</a>
+      </div>
+      <a href="">发表新帖</a>
     </div>
-    <a href="">发表新帖</a>
-  </div>
-  <app-immi-post-item *ngFor="let post of posts"
-                      [id]="post.id"
-                      [title]="post.title"
-                      [avatar]="post.avatar"
-                      [nickname]="post.nickname"
-                      [last_reply_nickname]="post.last_reply_nickname"
-                      [reply_count]="post.reply_count"
-                      [updated_at]="post.updated_at">
-  </app-immi-post-item>
-  <div style="height: 80px; line-height: 80px; text-align: center">
-    <span style="text-align: center" *ngIf="loadStatus.isLoading">正在拼命加载中...</span>
-    <span style="text-align: center" *ngIf="loadStatus.isError">加载失败</span>
-    <span style="text-align: center" *ngIf="loadStatus.isNoMore">暂无更多</span>
+    <app-immi-post-item *ngFor="let post of posts"
+                        [id]="post.id"
+                        [title]="post.title"
+                        [avatar]="post.avatar"
+                        [nickname]="post.nickname"
+                        [last_reply_nickname]="post.last_reply_nickname"
+                        [reply_count]="post.reply_count"
+                        [updated_at]="post.updated_at">
+    </app-immi-post-item>
+    <div style="height: 80px; line-height: 80px; text-align: center">
+      <span style="text-align: center" *ngIf="loadStatus.isLoading">正在拼命加载中...</span>
+      <span style="text-align: center" *ngIf="loadStatus.isError">加载失败</span>
+      <span style="text-align: center" *ngIf="loadStatus.isNoMore">暂无更多</span>
 
+    </div>
   </div>
+  <app-immi-back-top [scrollContainer]="container"></app-immi-back-top>
 </div>

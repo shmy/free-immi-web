@@ -1,3 +1,14 @@
+@import '../post-page-host';
 .post-view {
   padding: 10px;
+  .post-view-concise {
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(26, 26, 26, .1);
+  }
+  .post-view-content {
+    padding: 15px 0;
+    color: #1a1a1a;
+  }
 }

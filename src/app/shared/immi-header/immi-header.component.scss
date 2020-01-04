@@ -1,11 +1,20 @@
 .immi-header{
   width: 100%;
-  height: 60px;
   line-height: 60px;
+  height: 56px;
   background-color: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2020;
-  box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+  position: relative;
+  &::after {
+    bottom: -5px;
+    box-shadow: inset 0 4px 8px -3px rgba(26, 26, 26, .1);
+    content: "";
+    height: 5px;
+    left: 0;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 2001;
+  }
 }
