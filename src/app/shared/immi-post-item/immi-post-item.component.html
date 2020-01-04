@@ -3,7 +3,7 @@
     <img class="post-item-avatar" [src]="avatar" alt="">
   </a>
   <div class="post-item-content">
-    <a href="" class="post-item-title">
+    <a [routerLink]="['../view/' + id]" href="javascript:void(0)" class="post-item-title">
       {{title}}
     </a>
     <div class="post-item-concise">

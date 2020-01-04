@@ -1,0 +1,28 @@
+<div class="rich-container" #toolbar>
+  <select class="ql-size">
+    <option value="small">小</option>
+    <option selected>默认</option>
+    <option value="large">大</option>
+    <option value="huge">超大</option>
+  </select>
+  <button class="ql-bold"></button>
+  <button class="ql-italic"></button>
+  <button class="ql-underline"></button>
+  <button class="ql-strike"></button>
+  <button class="ql-blockquote"></button>
+  <button class="ql-code-block"></button>
+  <select class="ql-color"></select>
+  <select class="ql-background"></select>
+  <select class="ql-list"></select>
+  <button class="ql-list" value="ordered"></button>
+  <button class="ql-list" value="bullet"></button>
+  <button class="ql-indent" value="-1"></button>
+  <button class="ql-indent" value="+1"></button>
+  <button class="ql-direction" value="rtl"></button>
+  <select class="ql-align"></select>
+  <button class="ql-link"></button>
+  <button class="ql-image"></button>
+  <button class="ql-script" value="sub"></button>
+  <button class="ql-script" value="super"></button>
+</div>
+<div [style.height]="height" class="rich-container" #container></div>

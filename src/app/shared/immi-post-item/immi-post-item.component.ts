@@ -7,6 +7,7 @@ import timeagoJs from '../util/timeago.util';
   styleUrls: ['./immi-post-item.component.scss']
 })
 export class ImmiPostItemComponent implements OnInit {
+  @Input('id') id: string;
   @Input('title') title: string;
   @Input('avatar') avatar: string;
   @Input('nickname') nickname: string;

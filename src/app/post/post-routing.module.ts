@@ -1,13 +1,15 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ListComponent} from './list/list.component';
-import {CreateComponent} from './create/create.component';
-import {DetailComponent} from './detail/detail.component';
-import {IndexComponent} from './index/index.component';
+import {ViewComponent} from './view/view.component';
 import {ImmiHeaderComponent} from '../shared/immi-header/immi-header.component';
 import {OutletComponent} from './outlet/outlet.component';
 import {ImmiPostItemComponent} from '../shared/immi-post-item/immi-post-item.component';
 import {CommonModule} from '@angular/common';
+import {MainComponent} from './main/main.component';
+import {MakeComponent} from './make/make.component';
+import {RichEditorComponent} from '../shared/rich-editor/rich-editor.component';
+import {FormsModule} from "@angular/forms";
 
 
 const routes: Routes = [
@@ -18,22 +20,22 @@ const routes: Routes = [
       // 帖子分类
       {
         path: '',
-        component: IndexComponent
+        component: MainComponent
       },
       // 帖子分类
       {
-        path: 'category/:id',
+        path: ':id',
         component: ListComponent
       },
       // 发表帖子
       {
-        path: 'create/:id',
-        component: CreateComponent
+        path: 'make/:id',
+        component: MakeComponent
       },
       // 帖子详情
       {
-        path: 'detail/:id',
-        component: DetailComponent
+        path: 'view/:id',
+        component: ViewComponent
       }
     ]
   },
@@ -41,15 +43,17 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    RichEditorComponent,
+    MainComponent,
+    MakeComponent,
     ImmiPostItemComponent,
     ImmiHeaderComponent,
     OutletComponent,
-    IndexComponent,
+    MakeComponent,
     ListComponent,
-    CreateComponent,
-    DetailComponent
+    ViewComponent
   ],
-  imports: [RouterModule.forChild(routes), CommonModule],
+  imports: [RouterModule.forChild(routes), CommonModule, FormsModule],
   exports: [RouterModule]
 })
 export class PostRoutingModule {
