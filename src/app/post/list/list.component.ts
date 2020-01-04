@@ -43,7 +43,7 @@ export class ListComponent implements OnInit, OnDestroy {
           const windowHeight = window.innerHeight;
           const scrollHeight = document.documentElement.scrollHeight;
           const scrollTop = document.documentElement.scrollTop;
-          if (windowHeight + scrollTop >= scrollHeight) {
+          if (windowHeight + scrollTop >= scrollHeight - 60) {
             return true;
           }
         }),
