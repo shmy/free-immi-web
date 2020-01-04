@@ -1,0 +1,5 @@
+<app-immi-header></app-immi-header>
+<div class="iframe">
+  <router-outlet></router-outlet>
+  <div [hidden]="!showBackTop" (click)="handleBackTop()" class="back-top"></div>
+</div>

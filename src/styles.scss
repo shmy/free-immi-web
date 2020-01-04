@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~normalize.css/normalize.css";
+html {
+  background-color: #F6F6F6;
+  scroll-behavior: smooth;
+}
+.container {
+  background-color: #FFFFFF;
+  max-width: 700px;
+  margin: 0 auto;
+  &.box-shadow {
+    padding: 0 10px;
+    box-shadow: 0 1px 3px rgba(26, 26, 26, .3);
+    box-sizing: border-box;
+  }
+}
+.iframe {
+  margin: 70px auto 10px auto;
+  box-sizing: border-box;
+
+}
