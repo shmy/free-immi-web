@@ -31,6 +31,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.loadStatus.setLoading();
     const data = await this.postService.getPostPagingListService('1');
     this.loadStatus.setLoaded();
+    // @ts-ignore
     this.posts = [...this.posts, ...data.data];
   }
 
