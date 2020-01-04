@@ -10,7 +10,7 @@ before_script:
   - npm install -g @angular/cli
 script:
   # - ng lint
-  - ng build --aot --prod --base-href https://shmy.github.io/free-immi-web/
+  - ng build --aot --prod --base-href http://v.shmy.tech/free-immi-web/
 deploy:
   provider: pages
   skip_cleanup: true
