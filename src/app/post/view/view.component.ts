@@ -11,5 +11,7 @@ export class ViewComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  handleClick(e) {
+    e.target.classList.add('like-active');
+  }
 }

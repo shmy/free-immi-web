@@ -23,7 +23,7 @@
         <h3>40 条回复 - 排序方式</h3>
         <app-rich-editor height="150px" [(ngModel)]="content" placeholder="写下你的回复..."></app-rich-editor>
         <div style="margin-top: 10px; text-align: right">
-          <span>👍</span>
+          <div (click)="handleClick($event)" class="heart"></div>
           &nbsp;&nbsp;
           <span>😓</span>
           &nbsp;&nbsp;
