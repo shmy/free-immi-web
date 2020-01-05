@@ -6,7 +6,7 @@ import {MainComponent} from './main/main.component';
 
 const routes: Routes = [
   {
-    path: 'auth',
+    path: '',
     component: MainComponent,
     children: [
       {

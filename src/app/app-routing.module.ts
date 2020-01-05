@@ -11,13 +11,13 @@ const routes: Routes = [
   },
   // 帖子模块
   {
-    path: '',
+    path: 'post',
     pathMatch: 'prefix',
     loadChildren: () => import('./post/post-routing.module').then(mod => mod.PostRoutingModule),
   },
   // 认证模块
   {
-    path: '',
+    path: 'auth',
     pathMatch: 'prefix',
     loadChildren: () => import('./auth/auth-routing.module').then(mod => mod.AuthRoutingModule),
   },

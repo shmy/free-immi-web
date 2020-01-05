@@ -17,7 +17,7 @@ import {KeepScrollPositionModule} from '../shared/directive/keep-scroll-position
 
 const routes: Routes = [
   {
-    path: 'post',
+    path: '',
     component: OutletComponent,
     children: [
       // 帖子分类
