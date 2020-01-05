@@ -17,8 +17,13 @@
                         [reply_count]="post.reply_count"
                         [updated_at]="post.updated_at">
     </app-immi-post-item>
-    <div style="height: 80px; line-height: 80px; text-align: center">
-      <span style="text-align: center" *ngIf="loadStatus.isLoading">正在拼命加载中...</span>
+    <div style="min-height: 80px; text-align: center">
+<!--      加载中...-->
+      <app-immi-loading-bar [visible]="loadStatus.isLoading">
+        <ng-container *ngIf="page !== 1; else tplLoadingIfFirst">
+          <ng-container *ngTemplateOutlet="tplLoadingIfNonFirst"></ng-container>
+        </ng-container>
+      </app-immi-loading-bar>
       <span style="text-align: center" *ngIf="loadStatus.isError">加载失败</span>
       <span style="text-align: center" *ngIf="loadStatus.isNoMore">暂无更多</span>
 
@@ -26,3 +31,35 @@
   </div>
   <app-immi-back-top [scrollContainer]="container"></app-immi-back-top>
 </div>
+
+<ng-template #tplLoadingIfNonFirst>
+  <div style="height: 80px; display: flex; justify-content: center; align-items: center;">
+    <img style="height: 26px;width: 26px; vertical-align: middle;" src="assets/loading.svg" alt="">
+    <span style="vertical-align: middle; margin-left: 20px; font-size: 14px">加载中...</span>
+  </div>
+</ng-template>
+<ng-template #tplLoadingIfFirst>
+  <ng-container *ngTemplateOutlet="tplLoadingIfFirstItem"></ng-container>
+  <ng-container *ngTemplateOutlet="tplLoadingIfFirstItem"></ng-container>
+  <ng-container *ngTemplateOutlet="tplLoadingIfFirstItem"></ng-container>
+</ng-template>
+<ng-template #tplLoadingIfFirstItem>
+  <div style="display: flex; margin: 5px 0">
+    <ngx-skeleton-loader
+      appearance="circle"
+      [theme]="{
+                width: '60px',
+                height: '60px',
+                'border-radius': '10px'
+              }"
+    ></ngx-skeleton-loader>
+    <div style="flex:1">
+      <ngx-skeleton-loader [theme]="{
+                'margin-top': '5px'
+              }" count="1"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{
+                'margin-top': '5px'
+              }" count="1"></ngx-skeleton-loader>
+    </div>
+  </div>
+</ng-template>

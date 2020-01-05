@@ -18,6 +18,8 @@ export class ListComponent implements OnInit, OnDestroy {
   loadStatus: LoadStatus = new LoadStatus();
   posts: any[] = [];
   $scroll: Subscription = null;
+  page = 0;
+  thresholdValue = 200;
 
   ngOnInit() {
     this.bind();
@@ -25,12 +27,16 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   async fetch() {
+    this.page ++;
     if (this.loadStatus.isLoading) {
       return;
     }
     this.loadStatus.setLoading();
     const data = await this.postService.getPostPagingListService('1');
     this.loadStatus.setLoaded();
+    // if (err) {
+    //   this.page --;
+    // }
     // @ts-ignore
     this.posts = [...this.posts, ...data.data];
   }
@@ -40,9 +46,9 @@ export class ListComponent implements OnInit, OnDestroy {
     const {height} = this.container.nativeElement.getBoundingClientRect();
     this.$scroll = fromEvent(el, 'scroll')
       .pipe(
-        debounceTime(300),
+        debounceTime(100),
         filter(event => {
-          return (height + el.scrollTop >= el.scrollHeight - 60);
+          return (height + el.scrollTop >= el.scrollHeight - this.thresholdValue);
         }),
         distinct(),
         tap(() => {

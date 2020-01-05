@@ -180,7 +180,7 @@ export class PostService {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(result);
-      }, 500);
+      }, 1500);
     });
   }
 }

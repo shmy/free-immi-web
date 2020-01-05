@@ -13,9 +13,10 @@ import {FormsModule} from '@angular/forms';
 import {ImmiBackTopComponent} from '../shared/component/immi-back-top/immi-back-top.component';
 import {TimeAgoModule} from '../shared/pipe/time-ago/time-ago.module';
 import {KeepScrollPositionModule} from '../shared/directive/keep-scroll-position/keep-scroll-position.module';
-import {ImgLazyLoadModule} from "../shared/directive/img-lazy-load/img-lazy-load.module";
-import {MediumZoomModule} from "../shared/directive/medium-zoom/medium-zoom.module";
-
+import {ImgLazyLoadModule} from '../shared/directive/img-lazy-load/img-lazy-load.module';
+import {MediumZoomModule} from '../shared/directive/medium-zoom/medium-zoom.module';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {ImmiLoadingBarComponent} from "../shared/component/immi-loading-bar/immi-loading-bar.component";
 
 const routes: Routes = [
   {
@@ -61,8 +62,18 @@ const routes: Routes = [
     MakeComponent,
     ListComponent,
     ViewComponent,
+    ImmiLoadingBarComponent,
   ],
-  imports: [RouterModule.forChild(routes), CommonModule, FormsModule, KeepScrollPositionModule, TimeAgoModule, ImgLazyLoadModule, MediumZoomModule],
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    FormsModule,
+    KeepScrollPositionModule,
+    TimeAgoModule,
+    ImgLazyLoadModule,
+    MediumZoomModule,
+    NgxSkeletonLoaderModule
+  ],
   exports: [RouterModule]
 })
 export class PostRoutingModule {
