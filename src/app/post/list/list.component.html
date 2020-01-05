@@ -39,27 +39,7 @@
   </div>
 </ng-template>
 <ng-template #tplLoadingIfFirst>
-  <ng-container *ngTemplateOutlet="tplLoadingIfFirstItem"></ng-container>
-  <ng-container *ngTemplateOutlet="tplLoadingIfFirstItem"></ng-container>
-  <ng-container *ngTemplateOutlet="tplLoadingIfFirstItem"></ng-container>
-</ng-template>
-<ng-template #tplLoadingIfFirstItem>
-  <div style="display: flex; margin: 5px 0">
-    <ngx-skeleton-loader
-      appearance="circle"
-      [theme]="{
-                width: '60px',
-                height: '60px',
-                'border-radius': '10px'
-              }"
-    ></ngx-skeleton-loader>
-    <div style="flex:1">
-      <ngx-skeleton-loader [theme]="{
-                'margin-top': '5px'
-              }" count="1"></ngx-skeleton-loader>
-      <ngx-skeleton-loader [theme]="{
-                'margin-top': '5px'
-              }" count="1"></ngx-skeleton-loader>
-    </div>
-  </div>
+  <app-post-list-skeleton></app-post-list-skeleton>
+  <app-post-list-skeleton></app-post-list-skeleton>
+  <app-post-list-skeleton></app-post-list-skeleton>
 </ng-template>

@@ -17,6 +17,7 @@ import {ImgLazyLoadModule} from '../shared/directive/img-lazy-load/img-lazy-load
 import {MediumZoomModule} from '../shared/directive/medium-zoom/medium-zoom.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {ImmiLoadingBarComponent} from "../shared/component/immi-loading-bar/immi-loading-bar.component";
+import {PostListSkeletonComponent} from "./skeleton/post-list-skeleton/post-list-skeleton.component";
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    PostListSkeletonComponent,
     ImmiBackTopComponent,
     RichEditorComponent,
     MainComponent,
