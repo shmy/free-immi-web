@@ -6,7 +6,8 @@
 * {
   outline: none;
 }
-html,body  {
+
+html, body {
   background-color: #F6F6F6;
   scroll-behavior: smooth;
   height: 100%;
@@ -25,13 +26,16 @@ html,body  {
   background: none;
   border: 1px solid;
   border-radius: 3px;
+
   &[disabled] {
     opacity: .4;
     cursor: not-allowed;
   }
+
   &.primary {
     color: #fff;
     background-color: #0084ff;
+
     &:not([disabled]) {
       &:hover {
         border-color: #0077e6;
@@ -39,4 +43,21 @@ html,body  {
       }
     }
   }
+}
+.medium-zoom-mask {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2021;
+  overflow: auto;
+  transition: background-color .3s;
+}
+.medium-zoom-image {
+  cursor: zoom-out;
+  will-change: transform;
+  position: absolute;
+  transition: transform .3s cubic-bezier(.2, 0, .2, 1), left .3s cubic-bezier(.2, 0, .2, 1), top .3s cubic-bezier(.2, 0, .2, 1);
 }

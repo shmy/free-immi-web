@@ -14,6 +14,7 @@ import {ImmiBackTopComponent} from '../shared/component/immi-back-top/immi-back-
 import {TimeAgoModule} from '../shared/pipe/time-ago/time-ago.module';
 import {KeepScrollPositionModule} from '../shared/directive/keep-scroll-position/keep-scroll-position.module';
 import {ImgLazyLoadModule} from "../shared/directive/img-lazy-load/img-lazy-load.module";
+import {MediumZoomModule} from "../shared/directive/medium-zoom/medium-zoom.module";
 
 
 const routes: Routes = [
@@ -61,7 +62,7 @@ const routes: Routes = [
     ListComponent,
     ViewComponent,
   ],
-  imports: [RouterModule.forChild(routes), CommonModule, FormsModule, KeepScrollPositionModule, TimeAgoModule, ImgLazyLoadModule],
+  imports: [RouterModule.forChild(routes), CommonModule, FormsModule, KeepScrollPositionModule, TimeAgoModule, ImgLazyLoadModule, MediumZoomModule],
   exports: [RouterModule]
 })
 export class PostRoutingModule {
