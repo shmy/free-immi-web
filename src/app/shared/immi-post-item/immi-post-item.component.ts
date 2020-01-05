@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import timeagoJs from '../util/timeago.util';
+// import timeagoJs from '../pipe/timeago/timeago.util';
 
 @Component({
   selector: 'app-immi-post-item',
   templateUrl: './immi-post-item.component.html',
-  styleUrls: ['./immi-post-item.component.scss']
+  styleUrls: ['./immi-post-item.component.scss'],
 })
 export class ImmiPostItemComponent implements OnInit {
   @Input('id') id: string;
@@ -15,9 +15,9 @@ export class ImmiPostItemComponent implements OnInit {
   @Input('last_reply_nickname') last_reply_nickname: string;
   @Input('reply_count') reply_count: number;
   constructor() { }
-  get updatedAtText(): string {
-    return timeagoJs(this.updated_at);
-  }
+  // get updatedAtText(): string {
+  //   return timeagoJs(this.updated_at);
+  // }
 
   ngOnInit() {
   }

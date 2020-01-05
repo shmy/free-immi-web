@@ -9,8 +9,10 @@ import {CommonModule} from '@angular/common';
 import {MainComponent} from './main/main.component';
 import {MakeComponent} from './make/make.component';
 import {RichEditorComponent} from '../shared/rich-editor/rich-editor.component';
-import {FormsModule} from "@angular/forms";
-import {ImmiBackTopComponent} from "../shared/immi-back-top/immi-back-top.component";
+import {FormsModule} from '@angular/forms';
+import {ImmiBackTopComponent} from '../shared/immi-back-top/immi-back-top.component';
+import {TimeAgoModule} from '../shared/pipe/time-ago/time-ago.module';
+import {KeepScrollPositionModule} from '../shared/directive/keep-scroll-position/keep-scroll-position.module';
 
 
 const routes: Routes = [
@@ -26,7 +28,10 @@ const routes: Routes = [
       // 帖子分类
       {
         path: ':id',
-        component: ListComponent
+        component: ListComponent,
+        data: {
+          keep: true,
+        }
       },
       // 发表帖子
       {
@@ -53,9 +58,9 @@ const routes: Routes = [
     OutletComponent,
     MakeComponent,
     ListComponent,
-    ViewComponent
+    ViewComponent,
   ],
-  imports: [RouterModule.forChild(routes), CommonModule, FormsModule],
+  imports: [RouterModule.forChild(routes), CommonModule, FormsModule, KeepScrollPositionModule, TimeAgoModule],
   exports: [RouterModule]
 })
 export class PostRoutingModule {

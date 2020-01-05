@@ -1,12 +1,14 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
-import {AuthRoutingModule} from './auth/auth-routing.module';
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
+import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
+import {RouteReuseStrategy} from '@angular/router';
+import {CustomRouteReuseStrategy} from './shared/strategy/custom-route-reuse.strategy';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,12 +16,22 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
   ],
   imports: [
     BrowserModule,
-    AuthRoutingModule,
     AppRoutingModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER, multi: true, useFactory: () => {
+        console.log('APP_INITIALIZER');
+        return () => Promise.resolve();
+      }
+    },
+    // 路由复用
+    {
+      provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
