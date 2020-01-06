@@ -1,9 +1,15 @@
-import {ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy} from '@angular/router';
+import {ActivatedRouteSnapshot, DetachedRouteHandle, Router, RouteReuseStrategy} from '@angular/router';
+import {Location} from '@angular/common';
+import {forwardRef, Inject} from '@angular/core';
 // 缓存时间 单位: 秒
 const cacheTime = 60 * 5;
 
 export class CustomRouteReuseStrategy implements RouteReuseStrategy {
   private cacheRouters: { [key: string]: any } = {};
+
+  // https://stackoverflow.com/questions/37997824/exception-cant-resolve-all-parameters
+  constructor(@Inject(forwardRef(() => Location)) public location: Location) {
+  }
 
   // 获取存储路由
   retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {

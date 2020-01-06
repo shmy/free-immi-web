@@ -8,6 +8,7 @@ import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {RouteReuseStrategy} from '@angular/router';
 import {CustomRouteReuseStrategy} from './shared/strategy/custom-route-reuse.strategy';
+import {Location} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {CustomRouteReuseStrategy} from './shared/strategy/custom-route-reuse.str
     // 路由复用
     {
       provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy,
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

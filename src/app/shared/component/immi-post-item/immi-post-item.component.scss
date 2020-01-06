@@ -3,12 +3,14 @@
   box-sizing: border-box;
   border-bottom: 1px solid rgba(26, 26, 26, .1);
   display: flex;
+
   .post-item-avatar {
     height: 60px;
     width: 60px;
     display: block;
     border-radius: 7px;
   }
+
   .post-item-content {
     flex: 1;
     width: 0;
@@ -17,21 +19,25 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
   .post-item-title {
     color: #666;
     //text-decoration: none;
   }
+
   .post-item-concise {
     font-size: 12px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     color: #ccc;
+
     .link-keyword {
       color: #8a8a8a;
       font-weight: bold;
       font-size: 14px;
     }
+
     .reply-count {
       background-color: #aab0c6;
       padding: 3px 7px;

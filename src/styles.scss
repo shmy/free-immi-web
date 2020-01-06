@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~normalize.css/normalize.css";
+//@import "~normalize.css/normalize.css";
 @import "~quill/dist/quill.snow.css";
+@import "~flex.css/dist/data-flex.css";
+@import "./purecss";
 @import "./src/app/post/post-style";
 
 * {
@@ -15,35 +17,17 @@ html, body {
   overflow: hidden;
 }
 
-.button {
-  display: inline-block;
-  padding: 0 16px;
-  font-size: 14px;
-  line-height: 32px;
-  color: #8590a6;
-  text-align: center;
-  cursor: pointer;
-  background: none;
-  border: 1px solid;
-  border-radius: 3px;
-
-  &[disabled] {
-    opacity: .4;
-    cursor: not-allowed;
-  }
-
-  &.primary {
-    color: #fff;
-    background-color: #0084ff;
-
-    &:not([disabled]) {
-      &:hover {
-        border-color: #0077e6;
-        background-color: #0077e6;
-      }
-    }
-  }
+//fix-flex.css
+//横向
+[data-flex~="dir:left"] > [data-flex-box] {
+  width: 0;
 }
+
+//纵向
+[data-flex~="dir:top"] > [data-flex-box] {
+  height: 0;
+}
+
 .medium-zoom-mask {
   height: 100%;
   width: 100%;
@@ -55,6 +39,7 @@ html, body {
   overflow: auto;
   transition: background-color .3s;
 }
+
 .medium-zoom-image {
   cursor: zoom-out;
   will-change: transform;

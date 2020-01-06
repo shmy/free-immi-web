@@ -1,7 +1,6 @@
 .immi-header{
   width: 100%;
-  line-height: 60px;
-  height: 56px;
+  height: 60px;
   background-color: #fff;
   position: relative;
   &::after {
@@ -16,5 +15,12 @@
     right: 0;
     width: 100%;
     z-index: 2001;
+  }
+  .immi-header-container {
+    height: 100%;
+  }
+  .immi-header-logo {
+    height: 50px;
+    width: 150px;
   }
 }
