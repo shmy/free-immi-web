@@ -1,1 +1,9 @@
-<p>make works!</p>
+<div class="post-fulled post-scroll">
+  <div class="post-layout-container shadow">
+    <div>
+      {{content}}
+    </div>
+    <app-rich-editor height="150px" [(ngModel)]="content" placeholder="写下你的回复..."></app-rich-editor>
+
+  </div>
+</div>

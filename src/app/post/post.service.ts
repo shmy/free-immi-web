@@ -8,6 +8,46 @@ export class PostService {
   constructor() {
   }
 
+  public getPostPlateList() {
+    const result = [
+      {
+        logo: 'https://cdn.v2ex.com/navatar/6cdd/60ea/184_large.png?m=1578038442',
+        title: 'Apple 产品交流',
+        desc: '设计了 Apple Watch，iPad，iPhone，iMac 及 MacBook Pro 等电子产品的美国公司。',
+      },
+      {
+        logo: 'https://cdn.v2ex.com/navatar/b53b/3a3d/55_large.png?m=1550138353',
+        title: '游戏',
+        desc: 'Life is short, have more fun.',
+      }, {
+        logo: 'https://cdn.v2ex.com/navatar/c74d/97b0/16_xxlarge.png?m=1577243845',
+        title: '分享发现',
+        desc: '分享你看到的好玩的，有信息量的，欢迎从这里获取灵感。',
+      }, {
+        logo: 'https://cdn.v2ex.com/navatar/6353/8fe6/519_xxlarge.png?m=1537099731',
+        title: '奇思妙想',
+        desc: '让你的创意在这里自由流动吧。',
+      }, {
+        logo: 'https://cdn.v2ex.com/navatar/17e6/2166/43_xxlarge.png?m=1573619904',
+        title: '酷工作',
+        desc: '做有趣的有意义的事情。',
+      }, {
+        logo: 'https://cdn.v2ex.com/navatar/a87f/f679/4_xxlarge.png?m=1569533863',
+        title: '音乐',
+        desc: 'Music is an art form whose medium is sound and silence.',
+      }, {
+        logo: 'https://cdn.v2ex.com/navatar/d67d/8ab4/39_xxlarge.png?m=1575344918',
+        title: 'Android',
+        desc: '来自 Google 的开放源代码智能手机平台。',
+      }
+    ];
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(result);
+      }, 2000);
+    });
+  }
+
   public getPostPagingListService(id: string) {
     console.log('getPostPagingListService');
     const result = {

@@ -8,7 +8,7 @@
           <li class="pure-menu-item"><a class="pure-menu-link">热门</a></li>
         </ul>
       </div>
-      <button class="pure-button pure-button-primary">发表新帖</button>
+      <button routerLink="../make/1" class="pure-button pure-button-primary">发表新帖</button>
     </div>
     <app-immi-post-item *ngFor="let post of posts"
                         [id]="post.id"
