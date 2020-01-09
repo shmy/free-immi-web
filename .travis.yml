@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "12"
+  - "12.14.0"
 dist: trusty
 sudo: required
 branches:
@@ -10,7 +10,7 @@ before_script:
   - npm install -g @angular/cli
 script:
   # - ng lint
-  - ng build --aot --prod --base-href http://v.shmy.tech/free-immi-web/
+  - ng build --aot --prod --base-href https://shmy.github.io/free-immi-web/
 deploy:
   provider: pages
   skip_cleanup: true
