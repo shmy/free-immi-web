@@ -1,12 +1,12 @@
-<div class="post-fulled post-scroll">
-  <div data-flex="dir:top" class="post-layout-container post-fulled">
-<!--    <div>-->
-<!--    </div>-->
-    <app-rich-editor data-flex-box="1" height="100%" [(ngModel)]="content" placeholder="请畅所欲言吧！"></app-rich-editor>
-    <div data-flex="dir:left main:right" style="padding-top: 10px">
-      <button class="pure-button">保存草稿</button>
-      <div style="width: 20px"></div>
-      <button class="pure-button pure-button-primary">提交发布</button>
+<div class="post-fulled-scroll">
+  <div data-flex="dir:top" style="height: 100%" class="post-layout-container">
+    <div data-flex-box="1" class=" bg-white padded-10 shadowed" data-flex="dir:top">
+      <app-rich-editor data-flex-box="1" height="100%" [(ngModel)]="content" placeholder="请畅所欲言吧！"></app-rich-editor>
+      <div data-flex="dir:left main:right" style="padding-top: 10px">
+        <button class="pure-button">保存草稿</button>
+        <div style="width: 20px"></div>
+        <button class="pure-button pure-button-primary">提交发布</button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,17 +1,25 @@
 .post-layout-container {
-  background-color: #FFFFFF;
-  max-width: 700px;
-  padding: 10px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 10px 0;
   box-sizing: border-box;
-  &.shadow {
-    box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
-  }
 }
-.post-fulled {
+
+.post-fulled-scroll {
+  overflow-y: auto;
   height: 100%;
   width: 100%;
 }
-.post-scroll {
-  overflow-y: auto;
+.post-layout-side-bar {
+  width: 300px;
+  margin-left: 10px;
+}
+
+// post-router-outlet routered page class
+router-outlet[data-post-router] + * {
+  width: 100%;
+  flex: 1;
+  height: 0;
+  background-color: #F6F6F6;
+  overflow-y: hidden;
 }
