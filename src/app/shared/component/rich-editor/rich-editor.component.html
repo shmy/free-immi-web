@@ -1,5 +1,11 @@
-<div data-flex="dir:top" [style.height]="height">
-  <div class="rich-container" #toolbar>
+<div style="position: relative; padding-top: 10px">
+  <div [@openClose]="showImageTool ? 'open' : 'closed'" (click)="handleMaskClick($event)" class="rich-editor-mask">
+    <div class="rich-editor-image-load">
+      <input (change)="handleImageChange($event)" accept="image/*" type="file">
+      <input type="text">
+    </div>
+  </div>
+  <div class="rich-container rich-toolbar" #toolbar>
     <select class="ql-font">
       <option value="微软雅黑">微软雅黑</option>
       <option selected>默认字体</option>
@@ -32,5 +38,6 @@
     <button title="添加图片" class="ql-image"></button>
     <button title="添加视频" class="ql-video"></button>
   </div>
-  <div data-flex-box="1"  class="rich-container" #container></div>
+  <div class="rich-container" #container></div>
+
 </div>

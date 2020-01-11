@@ -6,7 +6,7 @@ import { PostRoutingModule } from './post-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    PostRoutingModule
+    PostRoutingModule,
   ]
 })
 export class PostModule { }

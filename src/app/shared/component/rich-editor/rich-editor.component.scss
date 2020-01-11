@@ -1,6 +1,17 @@
 .rich-container {
   width: 100%;
+  .ql-editor {
+    min-height: 300px;
+  }
 }
+.rich-toolbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: white;
+}
+
 .ql-toolbar.ql-snow,
 .ql-container.ql-snow {
   border: none;
@@ -9,4 +20,21 @@
 .ql-custom-button {
   position: relative;
 }
-
+.rich-editor-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 26, 26, .5);
+  opacity: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .rich-editor-image-load {
+    height: 300px;
+    width: 300px;
+    background-color: #fff;
+  }
+}

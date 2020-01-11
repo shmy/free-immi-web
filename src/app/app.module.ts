@@ -8,7 +8,7 @@ import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {RouteReuseStrategy} from '@angular/router';
 import {CustomRouteReuseStrategy} from './shared/strategy/custom-route-reuse.strategy';
-import {Location} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import {Location} from '@angular/common';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
