@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./make.component.scss']
 })
 export class MakeComponent implements OnInit {
+  title = '';
   content = '';
   constructor() { }
 

@@ -8,8 +8,14 @@ import {
 } from '@angular/core';
 import * as Quill from 'quill';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, state, style, transition, trigger} from '@angular/animations';
+const FontStyle = Quill.import('attributors/style/font');
+const SizeStyle = Quill.import('attributors/style/size');
+FontStyle.whitelist = ['Arial', 'SimSun', 'SimHei', 'Microsoft YaHei', 'Kai', 'Hei'];
+SizeStyle.whitelist = ['10px', '12px', '14px', '16px', '18px', '20px'];
 
+Quill.register(FontStyle, true);
+Quill.register(SizeStyle, true);
 const RICH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RichEditorComponent),
