@@ -4,12 +4,12 @@ import {
   forwardRef,
   Input,
   OnInit,
-  Output,
-  ViewChild, ViewChildren, ViewContainerRef,
-  ViewRef
+  ViewChild
 } from '@angular/core';
 import * as Quill from 'quill';
+import QuillImagePicker from './modules/image-picker';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+
 const RICH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RichEditorComponent),
@@ -38,8 +38,17 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
 
   ngAfterViewInit(): void {
     // @ts-ignore
+    // https://blog.csdn.net/qq_27626333/article/details/81464100
     this.editor = new Quill(this.container.nativeElement, {
-      modules: {toolbar: this.toolbar.nativeElement, },
+      modules: {
+        toolbar: {
+          container: this.toolbar.nativeElement,
+          handlers: {
+            image: QuillImagePicker,
+            video: QuillImagePicker
+          }
+        },
+      },
       theme: 'snow',
       placeholder: this.placeholder,
     });

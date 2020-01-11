@@ -1,30 +1,36 @@
 <div data-flex="dir:top" [style.height]="height">
   <div class="rich-container" #toolbar>
+    <select class="ql-font">
+      <option value="微软雅黑">微软雅黑</option>
+      <option selected>默认字体</option>
+      <option value="微软雅黑">微软雅黑</option>
+      <option value="微软雅黑">微软雅黑</option>
+    </select>
     <select class="ql-size">
       <option value="small">小</option>
-      <option selected>默认</option>
+      <option selected>默认大小</option>
       <option value="large">大</option>
       <option value="huge">超大</option>
     </select>
-    <button class="ql-bold"></button>
-    <button class="ql-italic"></button>
-    <button class="ql-underline"></button>
-    <button class="ql-strike"></button>
-    <button class="ql-blockquote"></button>
-    <button class="ql-code-block"></button>
-    <select class="ql-color"></select>
-    <select class="ql-background"></select>
-    <select class="ql-list"></select>
-    <button class="ql-list" value="ordered"></button>
-    <button class="ql-list" value="bullet"></button>
-    <button class="ql-indent" value="-1"></button>
-    <button class="ql-indent" value="+1"></button>
-    <button class="ql-direction" value="rtl"></button>
-    <select class="ql-align"></select>
-    <button class="ql-link"></button>
-    <button class="ql-image"></button>
+    <button title="加粗" class="ql-bold"></button>
+    <button title="斜体" class="ql-italic"></button>
+    <button title="下划线" class="ql-underline"></button>
+    <button title="删除线" class="ql-strike"></button>
+    <button title="引用" class="ql-blockquote"></button>
+    <button title="代码块" class="ql-code-block"></button>
+    <select title="字体颜色" class="ql-color"></select>
+    <select title="背景颜色" class="ql-background"></select>
+    <button title="有序列表" class="ql-list" value="ordered"></button>
+    <button title="无序列表" class="ql-list" value="bullet"></button>
+    <button title="增加缩进" class="ql-indent" value="-1"></button>
+    <button title="减少缩进" class="ql-indent" value="+1"></button>
+    <button title="书写方向" class="ql-direction" value="rtl"></button>
+    <select title="对齐方式" class="ql-align"></select>
     <button class="ql-script" value="sub"></button>
     <button class="ql-script" value="super"></button>
+    <button title="超链接" class="ql-link"></button>
+    <button title="添加图片" class="ql-image"></button>
+    <button title="添加视频" class="ql-video"></button>
   </div>
   <div data-flex-box="1"  class="rich-container" #container></div>
 </div>
