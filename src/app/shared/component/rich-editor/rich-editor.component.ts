@@ -9,6 +9,8 @@ import {
 import * as Quill from 'quill';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {HttpClient} from '@angular/common/http';
+
 const FontStyle = Quill.import('attributors/style/font');
 const SizeStyle = Quill.import('attributors/style/size');
 FontStyle.whitelist = ['Arial', 'SimSun', 'SimHei', 'Microsoft YaHei', 'Kai', 'Hei'];
@@ -21,7 +23,7 @@ const RICH_VALUE_ACCESSOR: any = {
   useExisting: forwardRef(() => RichEditorComponent),
   multi: true
 };
-
+const IMAGE_API_URL = 'https://imgkr.com/api/files/upload';
 @Component({
   selector: 'app-rich-editor',
   templateUrl: './rich-editor.component.html',
@@ -56,7 +58,7 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
   editor: any = null;
   showImageTool = false;
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
   }
 
   ngOnInit() {
@@ -79,11 +81,9 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
       placeholder: this.placeholder,
     });
     this.editor.on('text-change', (delta, oldDelta, source) => {
-      if (source === 'user') {
-        const content = this.editor.container.firstChild.innerHTML;
-        if (this.onChange) {
-          this.onChange(content);
-        }
+      const content = this.editor.container.firstChild.innerHTML;
+      if (this.onChange) {
+        this.onChange(content);
       }
     });
   }
@@ -103,6 +103,7 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
       this.editor.setText(obj);
     }
   }
+
   handleImageChange(e) {
     const files = e.target.files;
     if (files.length === 0) {
@@ -110,14 +111,27 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
     }
     const file = files[0];
     e.target.value = '';
-    const fd = new FileReader();
-    fd.onload = (evt: any) => {
-      const range = this.editor.getSelection();
-      this.editor.insertEmbed(range.index, 'image', evt.target.result);
-      this.showImageTool = false;
-    };
-    fd.readAsDataURL(file);
+    // const fd = new FileReader();
+    // fd.onload = (evt: any) => {
+    //   const range = this.editor.getSelection();
+    //   this.editor.insertEmbed(range.index, 'image', evt.target.result);
+    //   this.showImageTool = false;
+    // };
+    // fd.readAsDataURL(file);
+    const fd = new FormData();
+    fd.append('file', file);
+    this.httpClient.post(IMAGE_API_URL, fd).subscribe(ret => {
+      // @ts-ignore
+      if (ret.code === 200) {
+        const range = this.editor.getSelection();
+        // @ts-ignore
+        this.editor.insertEmbed(range.index, 'image', ret.data);
+        this.showImageTool = false;
+      }
+    });
+
   }
+
   handleMaskClick(e) {
     if (e.target.classList.contains('rich-editor-mask')) {
       this.showImageTool = false;

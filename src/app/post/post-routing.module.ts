@@ -19,6 +19,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {ImmiLoadingBarComponent} from '../shared/component/immi-loading-bar/immi-loading-bar.component';
 import {PostListSkeletonComponent} from './skeleton/post-list-skeleton/post-list-skeleton.component';
 import {PostMainSkeletonComponent} from './skeleton/post-main-skeleton/post-main-skeleton.component';
+import {DomSanitizerModule} from '../shared/pipe/dom-sanitizer/dom-sanitizer.module';
 
 const routes: Routes = [
   {
@@ -77,8 +78,7 @@ const routes: Routes = [
     ImgLazyLoadModule,
     MediumZoomModule,
     NgxSkeletonLoaderModule,
-
-
+    DomSanitizerModule,
   ],
   exports: [RouterModule]
 })

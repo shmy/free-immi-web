@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-//@import "~normalize.css/normalize.css";
 @import "~quill/dist/quill.snow.css";
 @import "~flex.css/dist/data-flex.css";
 @import "./purecss";
 @import "./src/app/post/post-style";
+@import "./src/app/shared/directive/medium-zoom/medium-zoom";
 
 * {
   outline: none;
@@ -40,37 +40,5 @@ html, body {
 }
 
 .bg-white {
-  background-color: #fff;
-}
-
-.medium-zoom-mask {
-  height: 100%;
-  width: 100%;
-  background-color: transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2021;
-  overflow: auto;
-  transition: background-color .3s;
-}
-
-.medium-zoom-image {
-  cursor: zoom-out;
-  will-change: transform;
-  position: absolute;
-  transition: transform .3s cubic-bezier(.2, 0, .2, 1), left .3s cubic-bezier(.2, 0, .2, 1), top .3s cubic-bezier(.2, 0, .2, 1);
-}
-
-.ql-immi-img-wrap {
-  display: none;
-  border: 1px solid #ccc;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
-  padding: 10px;
-  position: absolute;
-  margin-top: -1px;
-  top: 100%;
-  left: 0;
-  z-index: 2020;
   background-color: #fff;
 }

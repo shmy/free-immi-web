@@ -1,9 +1,8 @@
 import {AfterViewInit, Directive, ElementRef, HostBinding, Input} from '@angular/core';
-
-// import MediumZoom from 'medium-zoom';
-
+import './medium-zoom.scss';
 @Directive({
   selector: '[appMediumZoom]',
+
 })
 export class MediumZoomDirective implements AfterViewInit {
   @HostBinding('attr.src') srcAttr = null;

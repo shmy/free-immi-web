@@ -1,0 +1,19 @@
+
+.medium-zoom-mask {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2021;
+  overflow: auto;
+  transition: background-color .3s;
+}
+
+.medium-zoom-image {
+  cursor: zoom-out;
+  will-change: transform;
+  position: absolute;
+  transition: transform .3s cubic-bezier(.2, 0, .2, 1), left .3s cubic-bezier(.2, 0, .2, 1), top .3s cubic-bezier(.2, 0, .2, 1);
+}
