@@ -22,5 +22,9 @@
   .immi-header-logo {
     height: 50px;
     width: 150px;
+    @media all and (max-width: 1024px) {
+      height: 36px;
+      width: 90px;
+    }
   }
 }

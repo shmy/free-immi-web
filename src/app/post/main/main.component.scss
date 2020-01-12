@@ -3,6 +3,10 @@
   padding: 10px;
   box-sizing: border-box;
   text-decoration: none;
+  @media all and (max-width: 1024px) {
+    width: 100%;
+    padding: 10px 0;
+  }
   .post-plate-item-logo-wrap {
     height: 60px;
     width: 60px;
