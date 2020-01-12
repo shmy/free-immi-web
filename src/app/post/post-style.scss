@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: 10px 0;
   box-sizing: border-box;
+  img {
+    max-width: 100%;
+  }
 }
 
 .post-fulled-scroll {

@@ -2,14 +2,12 @@
   <div data-flex="dir:left" class="post-layout-container">
     <div data-flex-box="1">
       <div class="bg-white padded-10 shadowed">
-          <div>
-            <div [innerHTML]="content"></div>
-          </div>
+            <div #contentContainer [innerHTML]="content | domSanitizer"></div>
       </div>
       <div style="margin-top: 10px" class="bg-white padded-10 shadowed">
         <div class="post-view">
           <h3>40 条回复 - 排序方式</h3>
-          <app-rich-editor [scrollingContainer]="container" height="150px" [(ngModel)]="content" placeholder="写下你的回复..."></app-rich-editor>
+          <app-rich-editor [scrollingContainer]="container" height="150px" [(ngModel)]="comment" placeholder="写下你的回复..."></app-rich-editor>
           <div style="margin-top: 10px; text-align: right">
             <div (click)="handleClick($event)" class="heart"></div>
             &nbsp;&nbsp;
