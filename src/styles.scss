@@ -5,6 +5,8 @@
 @import "./src/app/post/post-style";
 //@import "./src/app/shared/directive/medium-zoom/medium-zoom";
 @import '~viewerjs/dist/viewer.css';
+@import '~quill-focus/src/focus.css';
+@import '~quill-emoji/dist/quill-emoji.css';
 
 * {
   outline: none;

@@ -11,7 +11,9 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {HttpClient} from '@angular/common/http';
 import {RichEditorCustomTransform} from './rich-editor-custom.transform';
-
+import * as quillFocus from 'quill-focus';
+import BlotFormatter from 'quill-blot-formatter';
+import quillEmoji from 'quill-emoji';
 const FontStyle = Quill.import('attributors/style/font');
 const SizeStyle = Quill.import('attributors/style/size');
 FontStyle.whitelist = ['Arial', 'SimSun', 'SimHei', 'Microsoft YaHei', 'Kai', 'Hei'];
@@ -19,6 +21,17 @@ SizeStyle.whitelist = ['10px', '12px', '14px', '16px', '18px', '20px'];
 
 Quill.register(FontStyle, true);
 Quill.register(SizeStyle, true);
+Quill.register('modules/focus', quillFocus);
+Quill.register('modules/blotFormatter', BlotFormatter);
+Quill.register(
+  {
+    'formats/emoji': quillEmoji.EmojiBlot,
+    'modules/emoji-toolbar': quillEmoji.ToolbarEmoji,
+    // 'modules/emoji-textarea': quillEmoji.TextAreaEmoji,
+    'modules/emoji-shortname': quillEmoji.ShortNameEmoji,
+  },
+  true,
+);
 const RICH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RichEditorComponent),
@@ -59,6 +72,7 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
   onChange: (s: string) => void = null;
   editor: any = null;
   showImageTool = false;
+  imageLoading = false;
 
   constructor(
     private httpClient: HttpClient,
@@ -78,8 +92,16 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
           container: this.toolbar.nativeElement,
           handlers: {
             image: () => this.showImageTool = true,
+            emoji: () => {},
           }
         },
+        focus: {
+          focusClass: 'focused-blot' // Defaults to .focused-blot.
+        },
+        blotFormatter: {},
+        'emoji-toolbar': true,
+        // 'emoji-textarea': true,
+        'emoji-shortname': true,
       },
       theme: 'snow',
       scrollingContainer: this.scrollingContainer,
@@ -111,6 +133,7 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
   }
 
   handleImageChange(e) {
+    this.imageLoading = true;
     const files = e.target.files;
     if (files.length === 0) {
       return;
@@ -126,19 +149,24 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
     // fd.readAsDataURL(file);
     const fd = new FormData();
     fd.append('file', file);
-    this.httpClient.post(IMAGE_API_URL, fd).subscribe(ret => {
-      // @ts-ignore
-      if (ret.code === 200) {
-        const range = this.editor.getSelection();
+    this.httpClient.post(IMAGE_API_URL, fd)
+      .subscribe(ret => {
         // @ts-ignore
-        this.editor.insertEmbed(range.index, 'image', ret.data);
-        this.showImageTool = false;
-      }
-    });
+        if (ret.code === 200) {
+          const range = this.editor.getSelection();
+          // @ts-ignore
+          this.editor.insertEmbed(range ? range.index : 0, 'image', ret.data);
+          this.showImageTool = false;
+        }
+        this.imageLoading = false;
+      });
 
   }
 
   handleMaskClick(e) {
+    if (this.imageLoading) {
+      return;
+    }
     if (e.target.classList.contains('rich-editor-mask')) {
       this.showImageTool = false;
     }

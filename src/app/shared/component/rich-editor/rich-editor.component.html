@@ -1,8 +1,17 @@
 <div style="position: relative; padding-top: 10px">
   <div [@openClose]="showImageTool ? 'open' : 'closed'" (click)="handleMaskClick($event)" class="rich-editor-mask">
     <div class="rich-editor-image-load">
-      <input (change)="handleImageChange($event)" accept="image/*" type="file">
-      <input type="text">
+      <div class="pure-form">
+        <h3>从本地上传</h3>
+        <input (change)="handleImageChange($event)" accept="image/*" type="file">
+      </div>
+      <div class="pure-form">
+        <h3>从URL上传</h3>
+        <div data-flex="dir:left">
+          <input data-flex-box="1" placeholder="请输入图片地址" type="text">
+          <button style="margin-left: 10px" class="pure-button pure-button-primary">上传</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="rich-container rich-toolbar" #toolbar>
@@ -40,6 +49,7 @@
     <button title="超链接" class="ql-link"></button>
     <button title="添加图片" class="ql-image"></button>
     <button title="添加视频" class="ql-video"></button>
+    <button title="添加表情" class="ql-emoji"></button>
   </div>
   <div class="rich-container" #container></div>
 
