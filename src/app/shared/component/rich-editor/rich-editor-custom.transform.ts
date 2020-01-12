@@ -13,7 +13,7 @@ export class RichEditorCustomTransform implements IRichTransformInterface {
   // restore image
   restore(content: string, urls: IUrl[] = []) {
     urls.forEach((item, index) => {
-      console.log(item);
+      // console.log(item);
       content = content.replace(transformImgTagMatcher(index), `<img data-height="${item.height}" data-width="${item.width}" src="${item.url}" />`);
     });
     return content;

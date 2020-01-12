@@ -19,6 +19,7 @@ import {ImmiLoadingBarComponent} from '../shared/component/immi-loading-bar/immi
 import {PostListSkeletonComponent} from './skeleton/post-list-skeleton/post-list-skeleton.component';
 import {PostMainSkeletonComponent} from './skeleton/post-main-skeleton/post-main-skeleton.component';
 import {DomSanitizerModule} from '../shared/pipe/dom-sanitizer/dom-sanitizer.module';
+import {PostViewSkeletonComponent} from "./skeleton/post-view-skeleton/post-view-skeleton.component";
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    PostViewSkeletonComponent,
     PostMainSkeletonComponent,
     PostListSkeletonComponent,
     ImmiBackTopComponent,
