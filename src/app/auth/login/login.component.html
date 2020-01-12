@@ -1,1 +1,24 @@
-<p>登录页面</p>
+<div class="auth-login">
+  <video class="auth-video" autoplay loop poster="assets/cover/coverr-typing-in-laptop-1578678668153.jpg"
+         src="assets/cover/coverr-typing-in-laptop-1578678668153.mp4"></video>
+  <div data-flex="dir:top main:center cross:center" class="auth-wrap">
+    <img src="assets/logo.png" alt="">
+    <div class="auth-login-wrap">
+      <form (submit)="handleSubmit($event)" class="pure-form pure-g">
+        <div class="pure-controls">
+          <input #usernameInput name="username" placeholder="请输入用户名" type="text">
+        </div>
+        <div class="pure-controls">
+          <input name="password" type="password" placeholder="请输入密码">
+        </div>
+        <div class="pure-controls">
+          <button class="pure-button pure-button-primary">立即登陆</button>
+        </div>
+        <div data-flex="dir:left main:justify" class="pure-controls">
+          <a href="javascript:void(0);">忘记密码</a>
+          <a href="javascript:void(0);">注册账号</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.auth-login {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.auth-video {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #160b07;
+}
+.auth-wrap {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  //opacity: .9;
+  .auth-login-wrap {
+    border-radius: 3px;
+    //margin-top: 10px;
+    //height: 400px;
+    width: 444px;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+    //background-color: white;
+    .pure-controls {
+      margin-top: 20px;
+      &:first-child {
+        margin-top: 0;
+      }
+
+      input, button {
+        width: 100%;
+      }
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
