@@ -20,12 +20,18 @@ export class ListComponent implements OnInit, OnDestroy {
   $scroll: Subscription = null;
   page = 0;
   thresholdValue = 200;
+  currentTabIndex = 0;
 
   ngOnInit() {
     this.bind();
     this.fetch();
   }
-
+  handleSetTabIndex(index: number) {
+    this.currentTabIndex = index;
+    this.page = 0;
+    this.posts = [];
+    this.fetch();
+  }
   async fetch() {
     this.page ++;
     if (this.loadStatus.isLoading) {

@@ -5,9 +5,9 @@
         <div data-flex="dir:left" class="post-toolbar">
           <div data-flex-box="1" class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
-              <li class="pure-menu-item pure-menu-active"><a class="pure-menu-link">最新</a></li>
-              <li class="pure-menu-item"><a class="pure-menu-link">推荐</a></li>
-              <li class="pure-menu-item"><a class="pure-menu-link">热门</a></li>
+              <li (click)="handleSetTabIndex(0)" [class.pure-menu-active]="currentTabIndex === 0" class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link">最新</a></li>
+              <li (click)="handleSetTabIndex(1)" [class.pure-menu-active]="currentTabIndex === 1" class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link">推荐</a></li>
+              <li (click)="handleSetTabIndex(2)" [class.pure-menu-active]="currentTabIndex === 2" class="pure-menu-item"><a href="javascript:void(0);" class="pure-menu-link">热门</a></li>
             </ul>
           </div>
           <button routerLink="../make/1" class="pure-button pure-button-primary">发表新帖</button>
