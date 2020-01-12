@@ -14,7 +14,6 @@ import {ImmiBackTopComponent} from '../shared/component/immi-back-top/immi-back-
 import {TimeAgoModule} from '../shared/pipe/time-ago/time-ago.module';
 import {KeepScrollPositionModule} from '../shared/directive/keep-scroll-position/keep-scroll-position.module';
 import {ImgLazyLoadModule} from '../shared/directive/img-lazy-load/img-lazy-load.module';
-import {MediumZoomModule} from '../shared/directive/medium-zoom/medium-zoom.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {ImmiLoadingBarComponent} from '../shared/component/immi-loading-bar/immi-loading-bar.component';
 import {PostListSkeletonComponent} from './skeleton/post-list-skeleton/post-list-skeleton.component';
@@ -76,7 +75,6 @@ const routes: Routes = [
     KeepScrollPositionModule,
     TimeAgoModule,
     ImgLazyLoadModule,
-    MediumZoomModule,
     NgxSkeletonLoaderModule,
     DomSanitizerModule,
   ],

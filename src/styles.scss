@@ -3,7 +3,8 @@
 @import "~flex.css/dist/data-flex.css";
 @import "./purecss";
 @import "./src/app/post/post-style";
-@import "./src/app/shared/directive/medium-zoom/medium-zoom";
+//@import "./src/app/shared/directive/medium-zoom/medium-zoom";
+@import '~viewerjs/dist/viewer.css';
 
 * {
   outline: none;

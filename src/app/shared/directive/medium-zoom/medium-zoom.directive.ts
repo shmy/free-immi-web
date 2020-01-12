@@ -1,6 +1,5 @@
 import {AfterViewInit, Directive, ElementRef, HostBinding, Input} from '@angular/core';
 import mediumZoom from './medium-zoom';
-import './medium-zoom.scss';
 @Directive({
   selector: '[appMediumZoom]',
 

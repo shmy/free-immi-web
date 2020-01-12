@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import mediumZoom from '../../shared/directive/medium-zoom/medium-zoom';
-import {RichEditorCustomTransform} from "../../shared/component/rich-editor/rich-editor-custom.transform";
+import viewerjs from '../../shared/util/viewerjs.util';
+import {RichEditorCustomTransform} from '../../shared/component/rich-editor/rich-editor-custom.transform';
 
 @Component({
   selector: 'app-detail',
@@ -37,9 +37,12 @@ export class ViewComponent implements OnInit {
     setTimeout(() => {
       this.container.nativeElement.scrollTop = 0;
       const items = this.contentContainer.nativeElement.querySelectorAll('img');
-      for (const item of items) {
-        mediumZoom(item, item.src);
-      }
+      items.forEach((item, index) => {
+        item.style.cursor = 'zoom-in';
+        item.addEventListener('click', () => {
+          viewerjs(urls.map(t => ({url: t.url, alt: '描述' + index})), index);
+        });
+      });
     }, 0);
   }
 
