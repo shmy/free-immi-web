@@ -8,6 +8,7 @@ import {RichEditorCustomTransform} from '../../shared/component/rich-editor/rich
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit {
+  title = '全新單曲【我的新座位】不專心前傳Official Music Video【黃氏 全新單曲【我的新座位】不專心前傳Official Music Video【黃氏 全新單曲【我的新座位】不專心前傳Official Music Video【黃氏 全新單曲【我的新座位】不專心前傳Official Music Video【黃氏 ';
   content = '';
   comment = '';
   @ViewChild('contentContainer', {static: true}) contentContainer;
@@ -33,7 +34,7 @@ export class ViewComponent implements OnInit {
       {url: 'https://tpc.googlesyndication.com/simgad/10949952014676677817', width: 728, height: 90},
     ];
     this.content = this.richEditorCustomTransform.restore(content, urls);
-    this.comment = this.richEditorCustomTransform.restore(content, urls);
+    // this.comment = this.richEditorCustomTransform.restore(content, urls);
     setTimeout(() => {
       this.container.nativeElement.scrollTop = 0;
       const items = this.contentContainer.nativeElement.querySelectorAll('img');

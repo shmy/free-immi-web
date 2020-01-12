@@ -33,3 +33,14 @@
     background-position: right
   }
 }
+.post-view-title {
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  font-size: 22px;
+  position: sticky; top: 0; background-color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
