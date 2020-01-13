@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {fromPromise} from "rxjs/internal-compatibility";
 
 @Injectable({
   providedIn: 'root'
@@ -127,13 +128,130 @@ export class PostService {
           nickname: '李三',
           last_reply_nickname: 'koisf'
         },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        },
+        {
+          id: 10,
+          reply_count: 33,
+          updated_at: 1578116579929,
+          title: '明年自己注册个外包公司，怎么渠道接项目？',
+          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
+          nickname: '李三',
+          last_reply_nickname: 'koisf'
+        }
       ]
     };
-    return new Promise((resolve) => {
+    return fromPromise(new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(result);
       }, 1500);
-    });
+    }));
   }
 
   public getPostDetailById(id: string) {

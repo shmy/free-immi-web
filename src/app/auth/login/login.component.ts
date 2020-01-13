@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/', {replaceUrl: true});
   }
 
   ngAfterViewInit(): void {

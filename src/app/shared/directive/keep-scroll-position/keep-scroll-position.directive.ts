@@ -15,14 +15,18 @@ export class KeepScrollPositionDirective implements AfterViewInit {
 
   ngAfterViewInit(): void {
     fromEvent(this.el.nativeElement, 'scroll').pipe(
+      debounceTime(200),
+      filter(({target}) => {
+        return target;
+      }),
       map(({target}) => {
         return {x: target.scrollLeft, y: target.scrollTop};
       }),
-      debounceTime(200),
       distinct(),
     ).subscribe(({x, y}) => {
       this.x = x;
       this.y = y;
+
     });
     this.router.events.pipe(
       filter(event => {
@@ -34,5 +38,4 @@ export class KeepScrollPositionDirective implements AfterViewInit {
       nativeElement.scrollTop = this.y;
     });
   }
-
 }
