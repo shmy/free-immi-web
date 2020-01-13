@@ -20,7 +20,7 @@ export class ListComponent implements OnInit, OnDestroy {
   @ViewChild('container', {static: true}) container: ElementRef<HTMLDivElement> = null;
   loadStatus: LoadStatus = new LoadStatus();
   posts: any[] = [];
-  $loadSteam = new Subject<null>();
+  $loadStream = new Subject<null>();
   $scroll: Subscription = null;
   page = 0;
   thresholdValue = 200;
@@ -34,13 +34,13 @@ export class ListComponent implements OnInit, OnDestroy {
     this.currentTabIndex = index;
     this.page = 0;
     this.posts = [];
-    this.$loadSteam.next();
+    this.$loadStream.next();
   }
 
   bindEvent() {
-    this.$loadSteam.pipe(
+    this.$loadStream.pipe(
       filter((): boolean => {
-        return this.loadStatus.isLdle || this.loadStatus.isLoaded;
+        return this.loadStatus.notLoading;
       }),
       tap(() => {
         this.loadStatus.setLoading();
@@ -76,7 +76,9 @@ export class ListComponent implements OnInit, OnDestroy {
       this.posts = [...this.posts, ...evt.data];
     });
     this.activatedRoute.paramMap.subscribe(() => {
-      this.$loadSteam.next();
+      this.page = 0;
+      this.posts = [];
+      this.$loadStream.next();
     });
     const el = this.container.nativeElement;
     this.$scroll = fromEvent(el, 'scroll')
@@ -89,7 +91,7 @@ export class ListComponent implements OnInit, OnDestroy {
         distinct(),
       )
       .subscribe(() => {
-        this.$loadSteam.next();
+        this.$loadStream.next();
       });
   }
 
@@ -97,6 +99,6 @@ export class ListComponent implements OnInit, OnDestroy {
     if (this.$scroll) {
       this.$scroll.unsubscribe();
     }
-    this.$loadSteam.complete();
+    this.$loadStream.complete();
   }
 }

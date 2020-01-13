@@ -30,7 +30,7 @@
           </app-immi-loading-bar>
           <p style="text-align: center" *ngIf="loadStatus.isError">
             <span>加载失败</span>&nbsp;
-            <button (click)="$loadSteam.next()" class="pure-button pure-button-primary">点击重试</button>
+            <button (click)="$loadStream.next()" class="pure-button pure-button-primary">点击重试</button>
           </p>
           <p style="text-align: center" *ngIf="loadStatus.isNoMore">暂无更多</p>
 

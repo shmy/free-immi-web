@@ -17,6 +17,10 @@ export class LoadStatus {
     return this.status === LoadStatusEnum.loading;
   }
 
+  public get notLoading(): boolean {
+    return this.status !== LoadStatusEnum.loading;
+  }
+
   public get isError(): boolean {
     return this.status === LoadStatusEnum.error;
   }

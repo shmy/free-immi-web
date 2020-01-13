@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import viewerJs from '../../shared/util/viewerjs.util';
 import {RichEditorCustomTransform} from '../../shared/component/rich-editor/rich-editor-custom.transform';
 import {ActivatedRoute} from '@angular/router';
-import {Subject} from 'rxjs';
-import {switchMap, tap} from 'rxjs/operators';
+import {of, Subject} from 'rxjs';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {PostService} from '../post.service';
 import {LoadStatus} from '../../shared/enum/load-status.enum';
 
@@ -12,14 +12,14 @@ import {LoadStatus} from '../../shared/enum/load-status.enum';
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss']
 })
-export class ViewComponent implements OnInit {
+export class ViewComponent implements OnInit, OnDestroy {
   title = '';
   content = '';
   comment = '';
   @ViewChild('contentContainer', {static: false}) contentContainer;
   @ViewChild('container', {static: false}) container;
   status: LoadStatus = new LoadStatus();
-  $getDetail = new Subject<string>();
+  $getDetailStream = new Subject();
 
   constructor(
     private postService: PostService,
@@ -29,15 +29,28 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.$getDetail.pipe(
+    this.$getDetailStream.pipe(
       tap(() => {
         this.status.setLoading();
       }),
-      switchMap((id: string) => {
-        return this.postService.getPostDetailById(id);
+      map(() => {
+        const id: string = this.activatedRoute.snapshot.paramMap.get('id');
+        return {id};
+      }),
+      switchMap((params) => {
+        console.log(params);
+        return this.postService.getPostDetailById(params.id).pipe(
+          catchError(() => {
+            this.status.setError();
+            return of(null);
+          })
+        );
       }),
     ).subscribe(
       evt => {
+        if (!evt) {
+          return;
+        }
         // @ts-ignore
         this.title = evt.title;
         // @ts-ignore
@@ -45,13 +58,9 @@ export class ViewComponent implements OnInit {
         // @ts-ignore
         this.afterFetch(evt.urls);
         this.status.setLoaded();
-      },
-      () => {
-        this.status.setError();
       });
     this.activatedRoute.paramMap.subscribe(evt => {
-      const id: string = evt.get('id');
-      this.$getDetail.next(id);
+      this.$getDetailStream.next();
     });
   }
 
@@ -70,6 +79,10 @@ export class ViewComponent implements OnInit {
 
   handleClick(e) {
     e.target.classList.add('like-active');
+  }
+
+  ngOnDestroy(): void {
+    this.$getDetailStream.complete();
   }
 
 }

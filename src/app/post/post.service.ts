@@ -26,11 +26,11 @@ export class PostService {
         desc: '分享你看到的好玩的，有信息量的，欢迎从这里获取灵感。',
       }
     ];
-    return new Promise((resolve) => {
+    return fromPromise(new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(result);
       }, 2000);
-    });
+    }));
   }
 
   public getPostPagingListService(id: string) {
@@ -271,10 +271,10 @@ export class PostService {
         {url: 'https://tpc.googlesyndication.com/simgad/10949952014676677817', width: 728, height: 90},
       ],
     };
-    return new Promise((resolve, reject) => {
+    return fromPromise(new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(result);
       }, 1500);
-    });
+    }));
   }
 }
