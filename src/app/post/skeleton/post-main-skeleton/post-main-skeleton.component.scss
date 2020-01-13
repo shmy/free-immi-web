@@ -1,0 +1,10 @@
+.post-main-skeleton-wrap {
+  flex-wrap: wrap;
+}
+.post-main-skeleton {
+  width: 50%;
+
+  @media all and (max-width: 1024px) {
+    width: 100%;
+  }
+}
