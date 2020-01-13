@@ -20,6 +20,7 @@ import {PostListSkeletonComponent} from './skeleton/post-list-skeleton/post-list
 import {PostMainSkeletonComponent} from './skeleton/post-main-skeleton/post-main-skeleton.component';
 import {DomSanitizerModule} from '../shared/pipe/dom-sanitizer/dom-sanitizer.module';
 import {PostViewSkeletonComponent} from "./skeleton/post-view-skeleton/post-view-skeleton.component";
+import {ImmiPostCommentItemComponent} from "../shared/component/immi-post-comment-item/immi-post-comment-item.component";
 
 const routes: Routes = [
   {
@@ -69,6 +70,7 @@ const routes: Routes = [
     ListComponent,
     ViewComponent,
     ImmiLoadingBarComponent,
+    ImmiPostCommentItemComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

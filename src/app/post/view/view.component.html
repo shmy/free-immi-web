@@ -22,80 +22,34 @@
         </div>
         <div style="margin-top: 10px" class="bg-white padded-10 shadowed">
           <div class="post-view">
+
+            <div class="pure-form" data-flex="dir:left cross:center">
+              <h3 data-flex-box="1">123条回复</h3>
+              <select>
+                <option selected>默认排序</option>
+                <option>按时间排序</option>
+              </select>
+            </div>
             <app-rich-editor [scrollingContainer]="container" height="150px" [(ngModel)]="comment"
                              placeholder="写下你的回复..."></app-rich-editor>
             <div style="margin-top: 10px; text-align: right">
-              <div (click)="handleClick($event)" class="heart"></div>
-              &nbsp;&nbsp;
-              <span>😓</span>
-              &nbsp;&nbsp;
-              <button disabled class="button primary">提交回复</button>
+              <!--              <div (click)="handleClick($event)" class="heart"></div>-->
+              <!--              &nbsp;&nbsp;-->
+              <!--              <span>😓</span>-->
+              <!--              &nbsp;&nbsp;-->
+              <button class="pure-button pure-button-primary">提交回复</button>
             </div>
-            <h3>40 条回复 - 排序方式</h3>
-            <ul>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-              <li>接电话盛大</li>
-            </ul>
+            <div>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+              <app-immi-post-comment-item></app-immi-post-comment-item>
+            </div>
           </div>
         </div>
       </ng-container>

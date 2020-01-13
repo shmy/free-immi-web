@@ -1,0 +1,49 @@
+.post-comment-item {
+  //margin: 10px 0;
+  position: relative;
+  font-size: 15px;
+  padding: 10px 0;
+  box-sizing: border-box;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    margin: 0 20px;
+    border-bottom: 1px solid #f6f6f6;
+    content: "";
+  }
+  &:hover {
+    .post-comment-item-hover-to-show {
+      opacity: 1;
+    }
+  }
+}
+
+.post-comment-item-nickname {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.post-comment-item-avatar {
+  height: 38px;
+  width: 38px;
+  border-radius: 5px;
+}
+
+.post-comment-item-content {
+  word-break: break-word;
+  line-height: 1.6;
+  padding: 10px 10px 10px 46px;
+  box-sizing: border-box;
+}
+.post-comment-item-toolbar {
+  margin-left: 46px;
+
+}
+.post-comment-item-hover-to-show {
+  opacity: 0;
+  transition: opacity .3s;
+}
