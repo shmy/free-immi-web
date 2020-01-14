@@ -3,6 +3,7 @@
   width: 100%;
   position: relative;
 }
+
 .auth-video {
   object-fit: cover;
   height: 100%;
@@ -12,6 +13,7 @@
   left: 0;
   background-color: #160b07;
 }
+
 .auth-wrap {
   height: 100%;
   width: 100%;
@@ -28,15 +30,26 @@
     box-sizing: border-box;
     font-size: 20px;
     //background-color: white;
+    .controls-error {
+      position: absolute;
+      margin-top: 2px;
+      padding: 2px 7px;
+      background-color: #e9322d;
+      border-radius: 3px;
+      font-size: 14px;
+      color: #fff
+    }
+
     .pure-controls {
-      margin-top: 20px;
-      &:first-child {
-        margin-top: 0;
-      }
+      margin-bottom: 30px;
+      //&:first-child {
+      //  margin-top: 0;
+      //}
 
       input, button {
         width: 100%;
       }
+
       a {
         color: #fff;
       }

@@ -3,22 +3,72 @@
          src="assets/cover/coverr-typing-in-laptop-1578678668153.mp4"></video>
   <div data-flex="dir:top main:center cross:center" class="auth-wrap">
     <img src="assets/logo.png" alt="">
-    <div class="auth-login-wrap">
-      <form (submit)="handleSubmit($event)" class="pure-form pure-g">
-        <div class="pure-controls">
-          <input #usernameInput name="username" placeholder="请输入用户名" type="text">
-        </div>
-        <div class="pure-controls">
-          <input name="password" type="password" placeholder="请输入密码">
-        </div>
-        <div class="pure-controls">
-          <button class="pure-button pure-button-primary">立即登陆</button>
-        </div>
-        <div data-flex="dir:left main:justify" class="pure-controls">
-          <a href="javascript:void(0);">忘记密码</a>
-          <a href="javascript:void(0);">注册账号</a>
-        </div>
-      </form>
+    <div *ngIf="isLoginMode" class="auth-login-wrap">
+      <ng-container *ngTemplateOutlet="tplLogin"></ng-container>
+    </div>
+    <div *ngIf="!isLoginMode" class="auth-login-wrap">
+      <ng-container *ngTemplateOutlet="tplRegister"></ng-container>
     </div>
   </div>
 </div>
+<ng-template #tplLogin>
+  <form [formGroup]="loginFormGroup" (submit)="handleLoginSubmit($event)" class="pure-form pure-g">
+    <div class="pure-controls">
+      <input #usernameInput formControlName="username"
+             placeholder="请输入用户名"
+             type="text">
+      <div class="controls-error" [hidden]="loginFormGroup.disabled || loginFormGroup.get('username').valid || loginFormGroup.get('username').pristine">
+        {{loginFormGroup.get('username').errors?.message}}
+      </div>
+    </div>
+    <div class="pure-controls">
+      <input formControlName="password"
+             type="password"
+             placeholder="请输入密码">
+      <div class="controls-error" [hidden]="loginFormGroup.disabled || loginFormGroup.get('password').valid || loginFormGroup.get('password').pristine">
+        {{loginFormGroup.get('password').errors?.message}}
+      </div>
+    </div>
+    <div class="pure-controls">
+      <button [disabled]="loginFormGroup.invalid || submitting" class="pure-button pure-button-primary">立即登陆</button>
+    </div>
+    <div data-flex="dir:left main:justify" class="pure-controls">
+      <a [hidden]="submitting" href="javascript:void(0);">忘记密码</a>
+      <a [hidden]="submitting" href="javascript:void(0);" (click)="handleSwitchToRegister()">注册账号</a>
+    </div>
+  </form>
+</ng-template>
+<ng-template #tplRegister>
+  <form [formGroup]="registerFormGroup" (submit)="handleRegisterSubmit($event)" class="pure-form pure-g">
+    <div class="pure-controls">
+      <input #usernameRegisterInput formControlName="username" name="username" placeholder="请输入用户名" type="text">
+      <div class="controls-error" [hidden]="registerFormGroup.disabled || registerFormGroup.get('username').valid || registerFormGroup.get('username').pristine">
+        {{registerFormGroup.get('username').errors?.message}}
+      </div>
+    </div>
+    <div class="pure-controls">
+      <input formControlName="email" name="username" placeholder="请输入邮箱地址" type="text">
+      <div class="controls-error" [hidden]="registerFormGroup.disabled || registerFormGroup.get('email').valid || registerFormGroup.get('email').pristine">
+        {{registerFormGroup.get('email').errors?.message}}
+      </div>
+    </div>
+    <div class="pure-controls">
+      <input formControlName="password" name="password" type="password" placeholder="请输入密码">
+      <div class="controls-error" [hidden]="registerFormGroup.disabled || registerFormGroup.get('password').valid || registerFormGroup.get('password').pristine">
+        {{registerFormGroup.get('password').errors?.message}}
+      </div>
+    </div>
+    <div class="pure-controls">
+      <input formControlName="rePassword" name="password" type="password" placeholder="请确认密码">
+      <div class="controls-error" [hidden]="registerFormGroup.disabled || registerFormGroup.get('rePassword').valid || registerFormGroup.get('rePassword').pristine">
+        {{registerFormGroup.get('rePassword').errors?.message}}
+      </div>
+    </div>
+    <div class="pure-controls">
+      <button [disabled]="submitting || registerFormGroup.invalid" class="pure-button pure-button-primary">立即注册</button>
+    </div>
+    <div data-flex="dir:left main:justify" class="pure-controls">
+      <a [hidden]="submitting" href="javascript:void(0);" (click)="handleSwitchToLogin()">已有账号，前去登陆</a>
+    </div>
+  </form>
+</ng-template>

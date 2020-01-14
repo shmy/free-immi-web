@@ -45,3 +45,8 @@ html, body {
 .bg-white {
   background-color: #fff;
 }
+
+input.ng-invalid.ng-touched {
+  color: #b94a48;
+  border-color: #e9322d !important;
+}
