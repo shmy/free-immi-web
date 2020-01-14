@@ -1,10 +1,10 @@
-.auth-login {
+.profile-login {
   height: 100%;
   width: 100%;
   position: relative;
 }
 
-.auth-video {
+.profile-video {
   object-fit: cover;
   height: 100%;
   width: 100%;
@@ -14,14 +14,14 @@
   background-color: #160b07;
 }
 
-.auth-wrap {
+.profile-wrap {
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
   //opacity: .9;
-  .auth-login-wrap {
+  .profile-login-wrap {
     border-radius: 3px;
     //margin-top: 10px;
     //height: 400px;
@@ -54,7 +54,7 @@
     }
   }
 }
-.auth-login-email-autocomplete {
+.profile-login-email-autocomplete {
   margin: 0;
   padding: 0;
   list-style: none;

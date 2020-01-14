@@ -1,12 +1,12 @@
-<div class="auth-login">
-  <video class="auth-video" autoplay loop poster="assets/cover/coverr-typing-in-laptop-1578678668153.jpg"
+<div class="profile-login">
+  <video class="profile-video" autoplay loop poster="assets/cover/coverr-typing-in-laptop-1578678668153.jpg"
          src="assets/cover/coverr-typing-in-laptop-1578678668153.mp4"></video>
-  <div data-flex="dir:top main:center cross:center" class="auth-wrap">
+  <div data-flex="dir:top main:center cross:center" class="profile-wrap">
     <img style="height: 180px; width: 480px" src="assets/logo.png" alt="">
-    <div *ngIf="isLoginMode" class="auth-login-wrap">
+    <div *ngIf="isLoginMode" class="profile-login-wrap">
       <ng-container *ngTemplateOutlet="tplLogin"></ng-container>
     </div>
-    <div *ngIf="!isLoginMode" class="auth-login-wrap">
+    <div *ngIf="!isLoginMode" class="profile-login-wrap">
       <ng-container *ngTemplateOutlet="tplRegister"></ng-container>
     </div>
   </div>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="pure-controls">
-      <button [disabled]="loginFormGroup.invalid || submitting" class="pure-button pure-button-primary">立即登陆</button>
+      <button [disabled]="loginFormGroup.invalid || submitting" class="pure-button pure-button-primary">立即登录</button>
     </div>
     <div data-flex="dir:left main:justify" class="pure-controls">
       <a [hidden]="submitting" href="javascript:void(0);">忘记密码</a>
@@ -48,7 +48,7 @@
     </div>
     <div class="pure-controls">
       <input autocomplete="off" (input)="handleEmailInput($event)" formControlName="email" name="username" placeholder="请输入邮箱地址" type="text">
-      <ul class="auth-login-email-autocomplete drop-popup">
+      <ul class="profile-login-email-autocomplete drop-popup">
         <li (click)="handleSetAutocompleteEmail(item)" *ngFor="let item of autoCompletes; let index = index">{{ item }}</li>
       </ul>
       <div class="controls-error" [hidden]="registerFormGroup.disabled || registerFormGroup.get('email').valid || registerFormGroup.get('email').pristine">
@@ -71,7 +71,7 @@
       <button [disabled]="submitting || registerFormGroup.invalid" class="pure-button pure-button-primary">立即注册</button>
     </div>
     <div data-flex="dir:left main:justify" class="pure-controls">
-      <a [hidden]="submitting" href="javascript:void(0);" (click)="handleSwitchToLogin()">已有账号，前去登陆</a>
+      <a [hidden]="submitting" href="javascript:void(0);" (click)="handleSwitchToLogin()">已有账号，前去登录</a>
     </div>
   </form>
 </ng-template>

@@ -22,6 +22,7 @@ import {DomSanitizerModule} from '../shared/pipe/dom-sanitizer/dom-sanitizer.mod
 import {PostViewSkeletonComponent} from "./skeleton/post-view-skeleton/post-view-skeleton.component";
 import {ImmiPostCommentItemComponent} from "../shared/component/immi-post-comment-item/immi-post-comment-item.component";
 import {ClickOutsideModule} from "ng-click-outside";
+import {ImmiHeaderModule} from "../shared/component/immi-header/immi-header.module";
 
 const routes: Routes = [
   {
@@ -65,7 +66,7 @@ const routes: Routes = [
     MainComponent,
     MakeComponent,
     ImmiPostItemComponent,
-    ImmiHeaderComponent,
+    // ImmiHeaderComponent,
     OutletComponent,
     MakeComponent,
     ListComponent,
@@ -74,6 +75,7 @@ const routes: Routes = [
     ImmiPostCommentItemComponent,
   ],
   imports: [
+    ImmiHeaderModule,
     RouterModule.forChild(routes),
     CommonModule,
     FormsModule,

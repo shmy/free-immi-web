@@ -14,7 +14,7 @@
 [x] 全局toast提示
 [x] dropdown click-outside autocomplete
 [ ] 个人设置页面
-[x] 登陆注册
+[x] 登录注册
 [x] 回复列表
 [x] list页面 无限滚动有问题
 [x] 重新订阅首页和详情页数据

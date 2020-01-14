@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.submitting = false;
       this.loginFormGroup.enable();
-      this.toastrService.success('登陆成功！');
+      this.toastrService.success('登录成功！');
     }, 1000);
   }
 
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.submitting = false;
       this.registerFormGroup.enable();
-      this.toastrService.success('注册成功！请登陆！');
+      this.toastrService.success('注册成功！请登录！');
       this.handleSwitchToLogin();
     }, 1000);
   }

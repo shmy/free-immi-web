@@ -17,9 +17,9 @@ const routes: Routes = [
   },
   // 认证模块
   {
-    path: 'auth',
+    path: 'profile',
     pathMatch: 'prefix',
-    loadChildren: () => import('./auth/auth-routing.module').then(mod => mod.AuthRoutingModule),
+    loadChildren: () => import('./profile/profile-routing.module').then(mod => mod.ProfileRoutingModule),
   },
   {
     path: '**',
@@ -28,6 +28,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  declarations: [
+  ],
   imports: [RouterModule.forRoot(routes, {
     useHash: true,
   })],
