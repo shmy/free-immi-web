@@ -21,11 +21,14 @@
   }
 }
 
+.app-fulled, .app-fulled-scroll {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
 .app-fulled-scroll {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 100%;
-  width: 100%;
   //scroll-behavior: smooth;
 }
 .app-layout-side-bar {
