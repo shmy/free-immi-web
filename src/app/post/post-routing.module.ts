@@ -21,6 +21,7 @@ import {PostMainSkeletonComponent} from './skeleton/post-main-skeleton/post-main
 import {DomSanitizerModule} from '../shared/pipe/dom-sanitizer/dom-sanitizer.module';
 import {PostViewSkeletonComponent} from "./skeleton/post-view-skeleton/post-view-skeleton.component";
 import {ImmiPostCommentItemComponent} from "../shared/component/immi-post-comment-item/immi-post-comment-item.component";
+import {ClickOutsideModule} from "ng-click-outside";
 
 const routes: Routes = [
   {
@@ -81,6 +82,7 @@ const routes: Routes = [
     ImgLazyLoadModule,
     NgxSkeletonLoaderModule,
     DomSanitizerModule,
+    ClickOutsideModule,
   ],
   exports: [RouterModule]
 })

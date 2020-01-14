@@ -23,6 +23,7 @@
     "@ngx-loading-bar/http-client": "^4.2.0",
     "@ngx-loading-bar/router": "^4.2.0",
     "flex.css": "^1.1.7",
+    "ng-click-outside": "^5.3.0",
     "ngx-skeleton-loader": "^1.2.2",
     "ngx-toastr": "^11.3.0",
     "purecss": "^1.0.1",

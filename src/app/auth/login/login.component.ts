@@ -2,7 +2,18 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {emailValidator, equalValidator, passwordValidator, userNameValidator} from '../../shared/util/validator.util';
-import {ToastrService} from "ngx-toastr";
+import {ToastrService} from 'ngx-toastr';
+
+const DOMAINS = [
+  'icloud.com',
+  'gmail.com',
+  'yahoo.com',
+  'inbox.com',
+  'outlook.com',
+  'qq.com',
+  '126.com',
+  '163.com',
+];
 
 @Component({
   selector: 'app-login',
@@ -16,6 +27,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   loginFormGroup: FormGroup;
   registerFormGroup: FormGroup;
   submitting = false;
+  autoCompletes = [];
 
   constructor(
     private router: Router,
@@ -82,5 +94,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.handleSwitchToLogin();
+  }
+
+  handleEmailInput(e) {
+    let autoCompletes = [];
+    const value = e.target.value.trim();
+    if (!(!value || value.indexOf('@') !== -1)) {
+      autoCompletes = DOMAINS.map(item => {
+        return `${value}@${item}`;
+      });
+    }
+    this.autoCompletes = autoCompletes;
+  }
+
+  handleSetAutocompleteEmail(email: string) {
+    this.registerFormGroup.get('email').setValue(email);
+    this.autoCompletes = [];
   }
 }

@@ -3,8 +3,15 @@
     <a routerLink="/">
       <img class="immi-header-logo" src="assets/logo.png" alt="">
     </a>
-    <form action="/" data-flex="dir:left" data-flex-box="1" style="margin-left: 10px;" class="pure-form">
-      <input data-flex-box="1" type="text" placeholder="请输入搜索内容"/>
+    <form data-flex="dir:left" data-flex-box="1" style="margin-left: 10px;" class="pure-form">
+      <div class="immi-header-input-wrap" data-flex-box="1">
+        <input (click)="autocompleteIsHide = !autocompleteIsHide" class="immi-header-input" type="text"
+               placeholder="请输入搜索内容"/>
+        <div [hidden]="autocompleteIsHide" exclude=".immi-header-input" (clickOutside)="handleClickOutside()"
+             class="immi-header-autocomplete">
+          <h3>autocomplete</h3>
+        </div>
+      </div>
       <button style="margin: 0 0 0 10px;" type="submit" class="pure-button pure-button-primary">搜索</button>
     </form>
   </div>

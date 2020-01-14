@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./immi-header.component.scss']
 })
 export class ImmiHeaderComponent implements OnInit {
-
+  autocompleteIsHide = true;
   constructor() { }
 
   ngOnInit() {
   }
-
+  handleClickOutside() {
+    this.autocompleteIsHide = true;
+  }
 }

@@ -47,7 +47,10 @@
       </div>
     </div>
     <div class="pure-controls">
-      <input formControlName="email" name="username" placeholder="请输入邮箱地址" type="text">
+      <input autocomplete="off" (input)="handleEmailInput($event)" formControlName="email" name="username" placeholder="请输入邮箱地址" type="text">
+      <ul class="auth-login-email-autocomplete">
+        <li (click)="handleSetAutocompleteEmail(item)" *ngFor="let item of autoCompletes; let index = index">{{ item }}</li>
+      </ul>
       <div class="controls-error" [hidden]="registerFormGroup.disabled || registerFormGroup.get('email').valid || registerFormGroup.get('email').pristine">
         {{registerFormGroup.get('email').errors?.message}}
       </div>

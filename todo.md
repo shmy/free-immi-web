@@ -12,6 +12,7 @@
 [x] skeleton 适配移动端
 [ ] 面包屑
 [x] 全局toast提示
+[x] dropdown click-outside autocomplete
 [ ] 个人设置页面
 [x] 登陆注册
 [x] 回复列表
