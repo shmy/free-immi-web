@@ -5,7 +5,7 @@
       <input #titleInput name="title" [(ngModel)]="title" autofocus class="pure-input"
              style="font-size: 20px; width: 100%" type="text" maxlength="20" placeholder="请输入标题（最多20个字）">
     </div>
-    <app-rich-editor name="content" [scrollingContainer]="scrollingContainer" [(ngModel)]="content"
+    <app-rich-editor stickyTop="60px" name="content" [scrollingContainer]="scrollingContainer" [(ngModel)]="content"
                      placeholder="请畅所欲言吧！"></app-rich-editor>
   </div>
 </div>

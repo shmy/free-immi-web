@@ -66,7 +66,7 @@ const IMAGE_API_URL = 'https://imgkr.com/api/files/upload';
 export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @ViewChild('container', {static: true}) container;
   @ViewChild('toolbar', {static: true}) toolbar;
-  @Input('height') height = '200px';
+  @Input('stickyTop') stickyTop = '0';
   @Input('scrollingContainer') scrollingContainer = null;
   @Input('placeholder') placeholder = '';
   onChange: (s: string) => void = null;
