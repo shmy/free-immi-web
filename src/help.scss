@@ -1,0 +1,28 @@
+.shadowed {
+  box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+}
+
+.padded-10 {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.relative {
+  position: relative;
+}
+
+.drop-popup {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 0;
+  z-index: 2020;
+  box-shadow: 0 5px 20px rgba(26, 26, 26, .1);
+}

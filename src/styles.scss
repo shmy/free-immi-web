@@ -1,69 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~quill/dist/quill.snow.css";
 @import "~flex.css/dist/data-flex.css";
-@import "./purecss";
 @import "./src/app/post/post-style";
 //@import "./src/app/shared/directive/medium-zoom/medium-zoom";
 @import '~viewerjs/dist/viewer.css';
 @import '~quill-focus/src/focus.css';
 @import '~quill-emoji/dist/quill-emoji.css';
 @import '~ngx-toastr/toastr.css';
+@import "./purecss";
+@import "./help";
+@import "./cover";
 
-* {
-  outline: none;
+.app-layout-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 10px 0;
+  box-sizing: border-box;
+  img {
+    max-width: 100%;
+  }
 }
 
-html, body {
-  background-color: #F6F6F6;
-  //scroll-behavior: smooth;
+.app-fulled-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+  //scroll-behavior: smooth;
 }
-
-//fix-flex.css
-//横向
-[data-flex~="dir:left"] > [data-flex-box] {
-  width: 0;
-}
-
-//纵向
-[data-flex~="dir:top"] > [data-flex-box] {
-  height: 0;
-}
-
-.shadowed {
-  box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
-}
-
-.padded-10 {
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.bg-white {
-  background-color: #fff;
-}
-
-.relative {
-  position: relative;
-}
-
-.drop-popup {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  margin: 10px 0;
-  padding: 0;
-  z-index: 2020;
-  box-shadow: 0 5px 20px rgba(26, 26, 26, .1);
-}
-
-input.ng-invalid.ng-touched {
-  color: #b94a48;
-  border-color: #e9322d !important;
+.app-layout-side-bar {
+  width: 300px;
+  margin-left: 10px;
+  @media all and (max-width: 1024px) {
+    display: none;
+  }
 }
