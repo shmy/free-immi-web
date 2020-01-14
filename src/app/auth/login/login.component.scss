@@ -58,15 +58,15 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  //position: absolute;
+  //top: 100%;
+  //left: 0;
+  //right: 0;
   max-height: 200px;
   overflow-y: auto;
-  background-color: #fff;
-  z-index: 2020;
-  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
+  //background-color: #fff;
+  //z-index: 2020;
+  //box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
   >li {
     height: 36px;
     line-height: 36px;
@@ -74,7 +74,7 @@
     box-sizing: border-box;
     color: #666;
     cursor: pointer;
-    &:hover,&:active {
+    &:hover {
       background-color: #0af;
       color: #fff;
     }

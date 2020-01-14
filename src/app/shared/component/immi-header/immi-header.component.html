@@ -3,16 +3,27 @@
     <a routerLink="/">
       <img class="immi-header-logo" src="assets/logo.png" alt="">
     </a>
-    <form data-flex="dir:left" data-flex-box="1" style="margin-left: 10px;" class="pure-form">
-      <div class="immi-header-input-wrap" data-flex-box="1">
-        <input (click)="autocompleteIsHide = !autocompleteIsHide" class="immi-header-input" type="text"
+    <form data-flex="dir:left" style="margin: 0 20px" data-flex-box="1" class="pure-form">
+      <div data-flex="dir:left" data-flex-box="1" class="relative">
+        <input data-flex-box="1" (click)="autocompleteIsHide = !autocompleteIsHide" class="immi-header-input"
+               type="text"
                placeholder="请输入搜索内容"/>
         <div [hidden]="autocompleteIsHide" exclude=".immi-header-input" (clickOutside)="handleClickOutside()"
-             class="immi-header-autocomplete">
+             class="drop-popup" style="height: 300px">
           <h3>autocomplete</h3>
         </div>
       </div>
       <button style="margin: 0 0 0 10px;" type="submit" class="pure-button pure-button-primary">搜索</button>
     </form>
+    <div class="relative">
+      <img (click)="profilePopIsHide = !profilePopIsHide" class="immi-header-profile-avatar"
+           src="https://pic3.zhimg.com/v2-73aa4a28a05081f7efebe6709a050aff_im.jpg" alt="">
+      <ul [hidden]="profilePopIsHide" exclude=".immi-header-profile-avatar" (clickOutside)="handleProfileClickOutside()"
+          class="drop-popup immi-header-profile-dropdown">
+        <li>我的私信</li>
+        <li>个人中心</li>
+        <li>推出登陆</li>
+      </ul>
+    </div>
   </div>
 </header>

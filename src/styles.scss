@@ -47,6 +47,22 @@ html, body {
   background-color: #fff;
 }
 
+.relative {
+  position: relative;
+}
+
+.drop-popup {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 0;
+  z-index: 2020;
+  box-shadow: 0 5px 20px rgba(26, 26, 26, .1);
+}
+
 input.ng-invalid.ng-touched {
   color: #b94a48;
   border-color: #e9322d !important;

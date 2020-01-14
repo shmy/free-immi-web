@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImmiHeaderComponent implements OnInit {
   autocompleteIsHide = true;
+  profilePopIsHide = true;
   constructor() { }
 
   ngOnInit() {
   }
   handleClickOutside() {
     this.autocompleteIsHide = true;
+  }
+  handleProfileClickOutside() {
+    this.profilePopIsHide = true;
+    console.log('handleProfileClickOutside')
   }
 }
