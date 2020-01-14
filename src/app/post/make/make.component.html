@@ -1,10 +1,10 @@
 <div #scrollingContainer class="post-fulled-scroll bg-white">
-  <div class="post-layout-container">
-    <div class="pure-form">
-      <div style="padding: 10px; box-sizing: border-box">
-        <input #titleInput name="title" [(ngModel)]="title" autofocus class="pure-input" style="font-size: 20px; width: 100%" type="text" maxlength="20" placeholder="请输入标题（最多20个字）">
-      </div>
-      <app-rich-editor name="content" [scrollingContainer]="scrollingContainer" [(ngModel)]="content" placeholder="请畅所欲言吧！"></app-rich-editor>
+  <div class="post-layout-container pure-form">
+    <div style="padding: 10px; box-sizing: border-box">
+      <input #titleInput name="title" [(ngModel)]="title" autofocus class="pure-input"
+             style="font-size: 20px; width: 100%" type="text" maxlength="20" placeholder="请输入标题（最多20个字）">
     </div>
+    <app-rich-editor name="content" [scrollingContainer]="scrollingContainer" [(ngModel)]="content"
+                     placeholder="请畅所欲言吧！"></app-rich-editor>
   </div>
 </div>

@@ -1,45 +1,43 @@
 <div #container class="post-fulled-scroll">
   <div data-flex="dir:left" class="post-layout-container">
-    <div data-flex-box="1">
-      <div class="bg-white padded-10 shadowed">
-        <h3>板块列表</h3>
-        <div data-flex="dir:left" style="flex-wrap: wrap">
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
-          <ng-container *ngFor="let item of items">
-            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-          </ng-container>
+    <div data-flex-box="1" class="bg-white padded-10 shadowed">
+      <h3>板块列表</h3>
+      <div data-flex="dir:left" style="flex-wrap: wrap">
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
+        <ng-container *ngFor="let item of items">
+          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+        </ng-container>
 
-        </div>
-        <div style="text-align: center">
-          <!--      加载中...-->
-          <app-immi-loading-bar [visible]="loadStatus.isLoading">
-            <ng-container *ngTemplateOutlet="tplLoading"></ng-container>
-          </app-immi-loading-bar>
-          <div style="text-align: center" *ngIf="loadStatus.isError">
-            <span>加载失败</span>
-            &nbsp;
-            <button (click)="$loadStream.next()" class="pure-button pure-button-primary">点击重试</button>
-          </div>
+      </div>
+      <div style="text-align: center">
+        <!--      加载中...-->
+        <app-immi-loading-bar [visible]="loadStatus.isLoading">
+          <ng-container *ngTemplateOutlet="tplLoading"></ng-container>
+        </app-immi-loading-bar>
+        <div style="text-align: center" *ngIf="loadStatus.isError">
+          <span>加载失败</span>
+          &nbsp;
+          <button (click)="$loadStream.next()" class="pure-button pure-button-primary">点击重试</button>
         </div>
       </div>
     </div>

@@ -274,7 +274,7 @@ export class PostService {
     return fromPromise(new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(result);
-      }, 300);
+      }, 1000);
     }));
   }
 }

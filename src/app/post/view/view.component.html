@@ -1,17 +1,15 @@
 <div #container class="post-fulled-scroll">
   <div data-flex="dir:left" class="post-layout-container">
-    <div data-flex-box="1">
+    <div data-flex-box="1" class="bg-white padded-10 shadowed">
       <app-immi-loading-bar [visible]="status.isLoading">
-        <div class="bg-white padded-10 shadowed">
           <app-post-view-skeleton></app-post-view-skeleton>
-        </div>
       </app-immi-loading-bar>
       <div style="text-align: center" *ngIf="status.isError">
         <span>加载失败</span>&nbsp;
         <button (click)="$getDetailStream.next()" class="pure-button pure-button-primary">点击重试</button>
       </div>
       <ng-container *ngIf="status.isLoaded">
-        <div style="position:relative;" class="bg-white padded-10 shadowed">
+        <div class="relative">
           <h3 title="title" class="post-view-title">{{title}}</h3>
           <div #contentContainer [innerHTML]="content | domSanitizer"></div>
           <div>
