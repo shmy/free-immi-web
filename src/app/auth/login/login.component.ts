@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {emailValidator, equalValidator, passwordValidator, userNameValidator} from '../../shared/util/validator.util';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
+    private toastrService: ToastrService,
   ) {
   }
 
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.submitting = false;
       this.loginFormGroup.enable();
+      this.toastrService.success('登陆成功！');
     }, 1000);
   }
 
@@ -56,6 +59,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.submitting = false;
       this.registerFormGroup.enable();
+      this.toastrService.success('注册成功！请登陆！');
+      this.handleSwitchToLogin();
     }, 1000);
   }
 

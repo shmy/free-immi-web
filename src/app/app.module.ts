@@ -9,6 +9,7 @@ import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {RouteReuseStrategy} from '@angular/router';
 import {CustomRouteReuseStrategy} from './shared/strategy/custom-route-reuse.strategy';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      closeButton: true,
+    }),
   ],
   providers: [
     {
