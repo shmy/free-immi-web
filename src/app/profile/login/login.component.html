@@ -3,11 +3,8 @@
          src="assets/cover/coverr-typing-in-laptop-1578678668153.mp4"></video>
   <div data-flex="dir:top main:center cross:center" class="profile-wrap">
     <img style="height: 180px; width: 480px" src="assets/logo.png" alt="">
-    <div *ngIf="isLoginMode" class="profile-login-wrap">
-      <ng-container *ngTemplateOutlet="tplLogin"></ng-container>
-    </div>
-    <div *ngIf="!isLoginMode" class="profile-login-wrap">
-      <ng-container *ngTemplateOutlet="tplRegister"></ng-container>
+    <div class="profile-login-wrap">
+      <ng-container *ngTemplateOutlet="isLoginMode ? tplLogin : tplRegister"></ng-container>
     </div>
   </div>
 </div>

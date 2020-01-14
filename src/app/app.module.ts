@@ -10,6 +10,8 @@ import {RouteReuseStrategy} from '@angular/router';
 import {CustomRouteReuseStrategy} from './shared/strategy/custom-route-reuse.strategy';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import {DynamicModalComponent} from './shared/component/dynamic-modal/dynamic-modal.component';
+import {DynamicModalModule} from './shared/component/dynamic-modal/dynamic-modal.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import {ToastrModule} from 'ngx-toastr';
       positionClass: 'toast-top-center',
       closeButton: true,
     }),
+    DynamicModalModule,
   ],
   providers: [
     {
@@ -39,7 +42,8 @@ import {ToastrModule} from 'ngx-toastr';
       provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DynamicModalComponent]
 })
 export class AppModule {
 }

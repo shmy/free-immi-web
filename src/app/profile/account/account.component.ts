@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DynamicModalService} from '../../shared/component/dynamic-modal/dynamic-modal.service';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dynamicModalService: DynamicModalService
+  ) { }
 
   ngOnInit() {
+    this.dynamicModalService.open('dsada', {})
+    this.dynamicModalService.open('dsada', {})
+    this.dynamicModalService.open('dsada', {})
+    this.dynamicModalService.open('dsada', {})
+    this.dynamicModalService.open('dsada', {})
+    this.dynamicModalService.open('dsada', {})
+    this.dynamicModalService.open('dsada', {})
   }
 
 }

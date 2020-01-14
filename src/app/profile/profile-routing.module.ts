@@ -5,7 +5,8 @@ import {OutletComponent} from './outlet/outlet.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AccountComponent} from './account/account.component';
-import {ImmiHeaderModule} from "../shared/component/immi-header/immi-header.module";
+import {ImmiHeaderModule} from '../shared/component/immi-header/immi-header.module';
+import {ImmiCropperModule} from '../shared/component/immi-cropper/immi-cropper.module';
 
 
 const routes: Routes = [
@@ -31,9 +32,20 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AccountComponent, LoginComponent, OutletComponent],
-  imports: [ImmiHeaderModule, RouterModule.forChild(routes), CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [RouterModule]
+  declarations: [
+    AccountComponent,
+    LoginComponent, OutletComponent
+  ],
+  imports: [
+    ImmiHeaderModule,
+    RouterModule.forChild(routes),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ImmiCropperModule,
+  ],
+  exports: [RouterModule],
+
 })
 export class ProfileRoutingModule {
 }
