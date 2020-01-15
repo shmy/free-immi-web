@@ -14,6 +14,7 @@ export default (metas: IImageMeta[], index= 0) => {
   div.append(...images);
   // @ts-ignore
   const viewer = new Viewer(div, {
+    zIndex: 3000,
     hidden() {
       viewer.destroy();
     },

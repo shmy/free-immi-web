@@ -15,6 +15,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PostRoutingModule} from './post/post-routing.module';
 import {ListComponent} from './post/list/list.component';
 import {AvatarCropperModalModule} from "./shared/modal/avatar-cropper-modal/avatar-cropper-modal.module";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {NoopInterceptor} from "./shared/http-interceptors/noop-interceptor";
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import {AvatarCropperModalModule} from "./shared/modal/avatar-cropper-modal/avat
     {
       provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy,
     },
+    // http 拦截
+    { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   entryComponents: [DynamicModalComponent]

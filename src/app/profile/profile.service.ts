@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {fromPromise} from 'rxjs/internal-compatibility';
+import {HttpClient} from '@angular/common/http';
+import {HasHttpResponseCustomError} from '../shared/http-interceptors/noop-interceptor';
 
 interface ISelfProfile {
   username: string;
@@ -14,7 +16,9 @@ interface ISelfProfile {
 export class ProfileService {
   public selfProfile: ISelfProfile;
 
-  constructor() {
+  constructor(
+    private httpClient: HttpClient,
+  ) {
   }
 
   public get logged(): boolean {
@@ -22,17 +26,11 @@ export class ProfileService {
   }
 
   public login(username, password: string) {
-    return fromPromise(new Promise(resolve => {
-      setTimeout(() => {
-        resolve({
-          token: 'token_string'
-        });
-      }, 1000);
-    }));
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/api/account/login', {username, password});
   }
 
   public register(username, email, password, rePassword: string) {
-
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/api/account/register', {username, email, password});
   }
 
   public setToken(token: string) {

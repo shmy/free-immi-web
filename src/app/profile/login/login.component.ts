@@ -5,7 +5,7 @@ import {emailValidator, equalValidator, passwordValidator, userNameValidator} fr
 import {ToastrService} from 'ngx-toastr';
 import {ProfileService} from "../profile.service";
 import {of} from "rxjs";
-import {switchMap, tap} from "rxjs/operators";
+import {catchError, switchMap, tap} from "rxjs/operators";
 
 const DOMAINS = [
   'icloud.com',
@@ -78,12 +78,19 @@ export class LoginComponent implements OnInit, AfterViewInit {
           return this.profileService.login(value.username, value.password);
         })
       )
-      .subscribe(evt => {
-        // @ts-ignore
-        this.profileService.setToken(evt.token);
-        this.profileService.refreshSelfInfo();
+      .subscribe(([data, err]) => {
         this.submitting = false;
         this.loginFormGroup.enable();
+        if (err) {
+          // this.toastrService.error(err.message, '登录失败');
+          if (err) {
+            err.showToast();
+            return;
+          }
+          return;
+        }
+        // @ts-ignore
+        this.profileService.setToken(data.jwtToken);
         this.router.navigateByUrl('/', {replaceUrl: true});
         this.toastrService.success('登录成功！');
       });
@@ -91,15 +98,28 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   handleRegisterSubmit(e) {
     e.preventDefault();
-    this.submitting = true;
-    this.registerFormGroup.disable();
-    console.log(this.registerFormGroup.value);
-    setTimeout(() => {
-      this.submitting = false;
-      this.registerFormGroup.enable();
-      this.toastrService.success('注册成功！请登录！');
-      this.handleSwitchToLogin();
-    }, 1000);
+    const value = this.registerFormGroup.value;
+    of(1)
+      .pipe(
+        tap(() => {
+          this.submitting = true;
+          this.registerFormGroup.disable();
+        }),
+        switchMap(() => {
+          return this.profileService.register(value.username, value.email, value.password, value.rePassword);
+        })
+      )
+      .subscribe(([, err]) => {
+        this.submitting = false;
+        this.registerFormGroup.enable();
+        if (err) {
+          err.showToast();
+          return;
+        }
+        this.toastrService.success('注册成功！请登录!');
+        this.handleSwitchToLogin();
+      });
+
   }
 
   handleSwitchToLogin() {
