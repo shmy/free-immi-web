@@ -6,6 +6,7 @@ import {of, Subject} from 'rxjs';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {PostService} from '../post.service';
 import {LoadStatus} from '../../shared/enum/load-status.enum';
+import imgLazyLoad from '../../shared/directive/img-lazy-load/img-lazy-load';
 
 @Component({
   selector: 'app-detail',
@@ -71,8 +72,9 @@ export class ViewComponent implements OnInit, OnDestroy {
         item.style.cursor = 'zoom-in';
         item.addEventListener('click', () => {
           // TODO: baseURL
-          viewerJs([{url: item.src, alt: '描述'}], 0);
+          viewerJs([{url: item.dataset.lazySrc, alt: '描述'}], 0);
         });
+        imgLazyLoad(item);
       });
     }, 0);
   }

@@ -12,6 +12,8 @@ export class ImmiCropperComponent implements OnInit, AfterViewInit {
   cropper: any;
   @Output('cropped') croppedEmitter = new EventEmitter<string>();
   @Input('imageUrl') imageUrl = '';
+  @Input('width') width = 200;
+  @Input('height') height = 200;
   constructor() {
   }
 
@@ -27,7 +29,7 @@ export class ImmiCropperComponent implements OnInit, AfterViewInit {
 
   handleCropper() {
     if (this.cropper) {
-      const data = this.cropper.getCroppedCanvas({width: 200, height: 200});
+      const data = this.cropper.getCroppedCanvas({width: this.width, height: this.height});
       const dataURL = data.toDataURL('image/png');
       this.croppedEmitter.emit(dataURL);
     }

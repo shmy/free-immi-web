@@ -12,7 +12,8 @@ import {PostService} from "../../../post/post.service";
 })
 export class AvatarCropperModalComponent extends DynamicModalComponentExtended {
   @Input('imageUrl') imageUrl = '';
-
+  cropperWidth = 200;
+  cropperHeight = 200;
   constructor(
     private postService: PostService,
     private profileService: ProfileService,
@@ -27,7 +28,7 @@ export class AvatarCropperModalComponent extends DynamicModalComponentExtended {
         this.setBackgroundClickDismiss(false);
         this.setCloseVisible(false);
       }),
-      switchMap(() => this.postService.uploadImageByDataURL(dataURL))
+      switchMap(() => this.postService.uploadImageByDataURL(dataURL, this.cropperWidth, this.cropperHeight))
       // switchMap(() => {
       //   return this.profileService.setAvatar(dataURL);
       // })

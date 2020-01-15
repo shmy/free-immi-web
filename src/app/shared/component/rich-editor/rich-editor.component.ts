@@ -18,6 +18,9 @@ import {PostService} from '../../../post/post.service';
 // import {baseUrl} from '../../http-interceptors/noop-interceptor';
 import {CustomImageBlot} from './blot/custom-image.blot';
 import {baseUrl} from '../../http-interceptors/noop-interceptor';
+import {fromPromise} from "rxjs/internal-compatibility";
+import {switchMap} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 const FontStyle = Quill.import('attributors/style/font');
 const SizeStyle = Quill.import('attributors/style/size');
@@ -148,7 +151,10 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
     }
     const file = files[0];
     e.target.value = '';
-    this.postService.uploadImageByFile(file)
+
+    this.postService.getImageSize(file).pipe(
+      switchMap(({width, height}) => this.postService.uploadImageByFile(file, width, height))
+    )
       .subscribe(([data, err]) => {
         if (err) {
           err.showToast();

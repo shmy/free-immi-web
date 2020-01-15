@@ -19,7 +19,7 @@ export class RichEditorCustomTransform implements IRichTransformInterface {
     urls.forEach((item) => {
       // TODO: baseURL
       const path = item.path;
-      content = content.replace(restoreImgTagMatcher(item.id), `<img data-id="${item.id}" src="${path}" />`);
+      content = content.replace(restoreImgTagMatcher(item.id), `<img style="height: 300px; width: 300px" data-id="${item.id}" data-lazy-error="" data-lazy-loading="https://cdn.v2ex.com/navatar/b53b/3a3d/55_large.png?m=1550138353" data-lazy-src="${path}" />`);
     });
     return content;
   }
