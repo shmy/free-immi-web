@@ -3,6 +3,9 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {emailValidator, equalValidator, passwordValidator, userNameValidator} from '../../shared/util/validator.util';
 import {ToastrService} from 'ngx-toastr';
+import {ProfileService} from "../profile.service";
+import {of} from "rxjs";
+import {switchMap, tap} from "rxjs/operators";
 
 const DOMAINS = [
   'icloud.com',
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private router: Router,
     private fb: FormBuilder,
     private toastrService: ToastrService,
+    private profileService: ProfileService,
   ) {
   }
 
@@ -63,14 +67,25 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   handleLoginSubmit(e) {
     e.preventDefault();
-    this.submitting = true;
-    this.loginFormGroup.disable();
-    console.log(this.loginFormGroup.value);
-    setTimeout(() => {
-      this.submitting = false;
-      this.loginFormGroup.enable();
-      this.toastrService.success('登录成功！');
-    }, 1000);
+    const value = this.loginFormGroup.value;
+    of(1)
+      .pipe(
+        tap(() => {
+          this.submitting = true;
+          this.loginFormGroup.disable();
+        }),
+        switchMap(() => {
+          return this.profileService.login(value.username, value.password);
+        })
+      )
+      .subscribe(evt => {
+        // @ts-ignore
+        this.profileService.setToken(evt.token);
+        this.submitting = false;
+        this.loginFormGroup.enable();
+        this.toastrService.success('登录成功！');
+        console.log(evt);
+      });
   }
 
   handleRegisterSubmit(e) {

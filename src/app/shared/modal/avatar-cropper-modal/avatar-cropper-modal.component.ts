@@ -25,7 +25,7 @@ export class AvatarCropperModalComponent extends DynamicModalComponentExtended {
         this.setCloseVisible(false);
       }),
       switchMap(() => {
-        return this.profileService.setAvatarService(dataURL);
+        return this.profileService.setAvatar(dataURL);
       })
     )
       .subscribe(ret => {

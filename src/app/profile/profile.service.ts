@@ -9,7 +9,37 @@ export class ProfileService {
   constructor() {
   }
 
-  public setAvatarService(dataURL: string) {
+  public login(username, password: string) {
+    return fromPromise(new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          token: 'token_string'
+        });
+      }, 3000);
+    }));
+  }
+
+  public setToken(token: string) {
+    window.localStorage.setItem('token', token);
+  }
+
+  public getToken(): string {
+    return window.localStorage.getItem('token');
+  }
+
+  public Logout() {
+    this.clearToken();
+  }
+
+  public clearToken() {
+    window.localStorage.removeItem('token');
+  }
+
+  public register(username, email, password, rePassword: string) {
+
+  }
+
+  public setAvatar(dataURL: string) {
     return fromPromise(new Promise(resolve => {
       setTimeout(() => {
         resolve({dataURL});

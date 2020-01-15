@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ProfileService} from '../../../profile/profile.service';
 
 @Component({
   selector: 'app-immi-header',
@@ -8,15 +9,25 @@ import { Component, OnInit } from '@angular/core';
 export class ImmiHeaderComponent implements OnInit {
   autocompleteIsHide = true;
   profilePopIsHide = true;
-  constructor() { }
+
+  constructor(
+    private profileService: ProfileService,
+  ) {
+  }
 
   ngOnInit() {
   }
+
   handleClickOutside() {
     this.autocompleteIsHide = true;
   }
+
   handleProfileClickOutside() {
     this.profilePopIsHide = true;
-    console.log('handleProfileClickOutside')
+  }
+
+  handleLogout() {
+    this.profileService.Logout();
+    window.location.reload();
   }
 }
