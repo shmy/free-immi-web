@@ -1,12 +1,15 @@
 import {Inject, Injectable, Injector} from '@angular/core';
 import {
-  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders, HttpResponse, HttpErrorResponse
+  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse
 } from '@angular/common/http';
 
 import {Observable, of} from 'rxjs';
 import {ProfileService} from '../../profile/profile.service';
-import {catchError, filter, map, retry, timeout} from "rxjs/operators";
-import {ToastrService} from "ngx-toastr";
+import {catchError, filter, map, retry, timeout} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
+import {environment} from '../../../environments/environment';
+
+export const baseUrl = environment.baseUrl;
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
@@ -17,10 +20,19 @@ export class NoopInterceptor implements HttpInterceptor {
   ) {
   }
 
+  private parseUrl(url: string) {
+    if (/^http(s)?:\/\//.test(url)) {
+      return url;
+    }
+    return baseUrl + url;
+  }
+
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
     const token = this.profileService.getToken();
+    console.log(this.parseUrl(req.url))
     const clonedRequest = req.clone({
+      url: this.parseUrl(req.url),
       headers: req.headers.append('Authorization', token)
     });
     return next.handle(clonedRequest)
@@ -54,7 +66,7 @@ class HttpResponseCustomError extends Error {
   }
 
   showToast() {
-    console.log(this.stack)
+    // console.log(this.stack);
     this.toastrService.error(this.message, '出错了');
   }
 }

@@ -26,11 +26,11 @@ export class ProfileService {
   }
 
   public login(username, password: string) {
-    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/api/account/login', {username, password});
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/account/login', {username, password});
   }
 
   public register(username, email, password, rePassword: string) {
-    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/api/account/register', {username, email, password});
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/account/register', {username, email, password});
   }
 
   public setToken(token: string) {
