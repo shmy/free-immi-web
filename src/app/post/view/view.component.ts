@@ -55,23 +55,23 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.title = evt.title;
         // @ts-ignore
         this.content = this.richEditorCustomTransform.restore(evt.content, evt.urls);
-        // @ts-ignore
-        this.afterFetch(evt.urls);
+        this.afterFetch();
         this.status.setLoaded();
       });
-    this.activatedRoute.paramMap.subscribe(evt => {
+    this.activatedRoute.paramMap.subscribe(() => {
       this.$getDetailStream.next();
     });
   }
 
-  afterFetch(urls: any[]) {
+  afterFetch() {
     setTimeout(() => {
       this.container.nativeElement.scrollTop = 0;
       const items = this.contentContainer.nativeElement.querySelectorAll('img');
-      items.forEach((item, index) => {
+      items.forEach((item) => {
         item.style.cursor = 'zoom-in';
         item.addEventListener('click', () => {
-          viewerJs(urls.map(t => ({url: t.url, alt: '描述' + index})), index);
+          // TODO: baseURL
+          viewerJs([{url: item.src, alt: '描述'}], 0);
         });
       });
     }, 0);
