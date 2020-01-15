@@ -1,8 +1,10 @@
-<div (click)="handleMaskClick($event)" class="modal-container">
-  <div class="modal-body">
-    <div class="modal-header">
-      <span [hidden]="!closeVisible" (click)="close()" class="iconfont icon-Close modal-close">x</span>
-    </div>
-    <ng-content></ng-content>
+<div #maskElement (click)="handleMaskClick($event)" class="dynamic-modal-mask">
+</div>
+<div #containerElement class="dynamic-modal-container">
+  <div class="dynamic-modal-header">
+    <span  (click)="close()" class="iconfont icon-Close dynamic-modal-close">x</span>
+  </div>
+  <div class="dynamic-modal-body">
+    <ng-template appInsertion> </ng-template>
   </div>
 </div>

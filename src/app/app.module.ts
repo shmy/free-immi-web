@@ -8,10 +8,12 @@ import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {RouteReuseStrategy} from '@angular/router';
 import {CustomRouteReuseStrategy} from './shared/strategy/custom-route-reuse.strategy';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {DynamicModalComponent} from './shared/component/dynamic-modal/dynamic-modal.component';
 import {DynamicModalModule} from './shared/component/dynamic-modal/dynamic-modal.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {PostRoutingModule} from './post/post-routing.module';
+import {ListComponent} from './post/list/list.component';
 
 @NgModule({
   declarations: [

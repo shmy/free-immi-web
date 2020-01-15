@@ -24,14 +24,14 @@ export class DynamicModalService {
   ) {
   }
 
-  open<T>(content: Content<T>) {
+  open<T>(content: Content<T>, data: any = {}) {
     const factory = this.resolver.resolveComponentFactory(DynamicModalComponent);
-    const ngContent = this.resolveNgContent(content);
-    const componentRef = factory.create(this.injector, ngContent);
+    const componentRef = factory.create(this.injector);
     componentRef.instance.componentRef = componentRef;
-
+    componentRef.instance.dynamicComponent = content;
+    componentRef.instance.data = data;
+    this.appRef.attachView(componentRef.hostView);
     componentRef.hostView.detectChanges();
-
     const {nativeElement} = componentRef.location;
     this.document.body.appendChild(nativeElement);
   }

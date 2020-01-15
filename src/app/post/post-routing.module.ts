@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ListComponent} from './list/list.component';
 import {ViewComponent} from './view/view.component';
-import {ImmiHeaderComponent} from '../shared/component/immi-header/immi-header.component';
 import {OutletComponent} from './outlet/outlet.component';
 import {ImmiPostItemComponent} from '../shared/component/immi-post-item/immi-post-item.component';
 import {CommonModule} from '@angular/common';
@@ -19,10 +18,10 @@ import {ImmiLoadingBarComponent} from '../shared/component/immi-loading-bar/immi
 import {PostListSkeletonComponent} from './skeleton/post-list-skeleton/post-list-skeleton.component';
 import {PostMainSkeletonComponent} from './skeleton/post-main-skeleton/post-main-skeleton.component';
 import {DomSanitizerModule} from '../shared/pipe/dom-sanitizer/dom-sanitizer.module';
-import {PostViewSkeletonComponent} from "./skeleton/post-view-skeleton/post-view-skeleton.component";
-import {ImmiPostCommentItemComponent} from "../shared/component/immi-post-comment-item/immi-post-comment-item.component";
-import {ClickOutsideModule} from "ng-click-outside";
-import {ImmiHeaderModule} from "../shared/component/immi-header/immi-header.module";
+import {PostViewSkeletonComponent} from './skeleton/post-view-skeleton/post-view-skeleton.component';
+import {ImmiPostCommentItemComponent} from '../shared/component/immi-post-comment-item/immi-post-comment-item.component';
+import {ClickOutsideModule} from 'ng-click-outside';
+import {ImmiHeaderModule} from '../shared/component/immi-header/immi-header.module';
 
 const routes: Routes = [
   {
@@ -66,7 +65,6 @@ const routes: Routes = [
     MainComponent,
     MakeComponent,
     ImmiPostItemComponent,
-    // ImmiHeaderComponent,
     OutletComponent,
     MakeComponent,
     ListComponent,

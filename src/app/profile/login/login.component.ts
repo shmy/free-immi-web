@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {emailValidator, equalValidator, passwordValidator, userNameValidator} from '../../shared/util/validator.util';
 import {ToastrService} from 'ngx-toastr';
 
@@ -24,8 +24,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('usernameInput', {static: false}) usernameInput;
   @ViewChild('usernameRegisterInput', {static: false}) usernameRegisterInput;
   isLoginMode = true;
-  loginFormGroup: FormGroup;
-  registerFormGroup: FormGroup;
+  loginFormGroup: FormGroup = this.fb.group({
+    username: ['', [userNameValidator()]],
+    password: ['', [passwordValidator()]],
+  });
+  registerFormGroup: FormGroup = this.fb.group({
+    username: ['', [userNameValidator()]],
+    email: ['', [emailValidator()]],
+    password: ['', [passwordValidator()]],
+    rePassword: ['', [passwordValidator()]],
+  }, {
+    validators: [equalValidator()]
+  });
   submitting = false;
   autoCompletes = [];
 
@@ -37,18 +47,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.loginFormGroup = this.fb.group({
-      username: ['', [userNameValidator()]],
-      password: ['', [passwordValidator()]],
-    });
-    this.registerFormGroup = this.fb.group({
-      username: ['', [userNameValidator()]],
-      email: ['', [emailValidator()]],
-      password: ['', [passwordValidator()]],
-      rePassword: ['', [passwordValidator()]],
-    }, {
-      validators: [equalValidator()]
-    });
+    // this.loginFormGroup = this.fb.group({
+    //   username: ['', [userNameValidator()]],
+    //   password: ['', [passwordValidator()]],
+    // });
+    // this.registerFormGroup = this.fb.group({
+    //   username: ['', [userNameValidator()]],
+    //   email: ['', [emailValidator()]],
+    //   password: ['', [passwordValidator()]],
+    //   rePassword: ['', [passwordValidator()]],
+    // }, {
+    //   validators: [equalValidator()]
+    // });
   }
 
   handleLoginSubmit(e) {

@@ -14,6 +14,7 @@ import {RichEditorCustomTransform} from './rich-editor-custom.transform';
 import * as quillFocus from 'quill-focus';
 import BlotFormatter from 'quill-blot-formatter';
 import quillEmoji from 'quill-emoji';
+
 const FontStyle = Quill.import('attributors/style/font');
 const SizeStyle = Quill.import('attributors/style/size');
 FontStyle.whitelist = ['Arial', 'SimSun', 'SimHei', 'Microsoft YaHei', 'Kai', 'Hei'];
@@ -92,7 +93,8 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
           container: this.toolbar.nativeElement,
           handlers: {
             image: () => this.showImageTool = true,
-            emoji: () => {},
+            emoji: () => {
+            },
           }
         },
         focus: {

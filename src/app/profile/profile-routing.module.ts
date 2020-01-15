@@ -34,7 +34,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AccountComponent,
-    LoginComponent, OutletComponent
+    LoginComponent,
+    OutletComponent
   ],
   imports: [
     ImmiHeaderModule,

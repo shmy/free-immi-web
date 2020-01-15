@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {DynamicModalComponent, DynamicModalComponentExtended} from './dynamic-modal.component';
+import {DynamicModalComponent, InsertionDirective} from './dynamic-modal.component';
 
 
 
 @NgModule({
   declarations: [
     DynamicModalComponent,
+    InsertionDirective,
   ],
   imports: [
     CommonModule
