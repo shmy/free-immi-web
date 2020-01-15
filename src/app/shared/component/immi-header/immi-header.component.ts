@@ -16,6 +16,9 @@ export class ImmiHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.profileService.logged && !this.profileService.selfProfile) {
+      this.profileService.refreshSelfInfo();
+    }
   }
 
   handleClickOutside() {

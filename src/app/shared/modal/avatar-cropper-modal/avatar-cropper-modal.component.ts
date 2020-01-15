@@ -33,6 +33,7 @@ export class AvatarCropperModalComponent extends DynamicModalComponentExtended {
         this.setBackgroundClickDismiss(true);
         this.setCloseVisible(true);
         this.close();
+        this.profileService.refreshSelfInfo();
         // // @ts-ignore
         // if (ret.code === 200) {
         //  console.log(ret);

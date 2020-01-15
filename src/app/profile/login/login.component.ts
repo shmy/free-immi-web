@@ -81,10 +81,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
       .subscribe(evt => {
         // @ts-ignore
         this.profileService.setToken(evt.token);
+        this.profileService.refreshSelfInfo();
         this.submitting = false;
         this.loginFormGroup.enable();
+        this.router.navigateByUrl('/', {replaceUrl: true});
         this.toastrService.success('登录成功！');
-        console.log(evt);
       });
   }
 

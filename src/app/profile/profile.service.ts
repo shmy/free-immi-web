@@ -1,12 +1,24 @@
 import {Injectable} from '@angular/core';
-import {fromPromise} from "rxjs/internal-compatibility";
+import {fromPromise} from 'rxjs/internal-compatibility';
+
+interface ISelfProfile {
+  username: string;
+  nickname: string;
+  avatar: string;
+  signature: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
+  public selfProfile: ISelfProfile;
 
   constructor() {
+  }
+
+  public get logged(): boolean {
+    return !!this.getToken();
   }
 
   public login(username, password: string) {
@@ -15,8 +27,12 @@ export class ProfileService {
         resolve({
           token: 'token_string'
         });
-      }, 3000);
+      }, 1000);
     }));
+  }
+
+  public register(username, email, password, rePassword: string) {
+
   }
 
   public setToken(token: string) {
@@ -35,8 +51,20 @@ export class ProfileService {
     window.localStorage.removeItem('token');
   }
 
-  public register(username, email, password, rePassword: string) {
-
+  public refreshSelfInfo() {
+    fromPromise(new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          username: 'shmy',
+          nickname: '李媛媛',
+          avatar: 'https://avatars3.githubusercontent.com/u/19339440',
+          signature: '生活不止眼前的苟且，还有诗和远方。'
+        });
+      }, 1000);
+    })).subscribe((evt: any) => {
+      console.log(evt);
+      this.selfProfile = evt;
+    });
   }
 
   public setAvatar(dataURL: string) {

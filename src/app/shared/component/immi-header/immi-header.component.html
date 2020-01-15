@@ -3,7 +3,7 @@
     <a routerLink="/">
       <img class="immi-header-logo" src="assets/logo.png" alt="">
     </a>
-    <form data-flex="dir:left" style="margin: 0 20px" data-flex-box="1" class="pure-form">
+    <form data-flex="dir:left" style="margin-left: 20px" data-flex-box="1" class="pure-form">
       <div data-flex="dir:left" data-flex-box="1" class="relative">
         <input data-flex-box="1" (click)="autocompleteIsHide = !autocompleteIsHide" class="immi-header-input"
                type="text"
@@ -13,11 +13,11 @@
           <h3>autocomplete</h3>
         </div>
       </div>
-      <button style="margin: 0 0 0 10px;" type="submit" class="pure-button pure-button-primary">搜索</button>
+      <button style="margin-left: 20px;" type="submit" class="pure-button pure-button-primary">搜索</button>
     </form>
-    <div class="relative">
+    <div *ngIf="profileService.logged;else tplUnLogged" style="margin-left: 20px" class="relative">
       <img (click)="profilePopIsHide = !profilePopIsHide" class="immi-header-profile-avatar"
-           src="https://pic1.zhimg.com/v2-ef9d53e94f72225bc12c19e0070ba52d_r.jpg" alt="">
+           [src]="profileService.selfProfile?.avatar" alt="">
       <ul [hidden]="profilePopIsHide" exclude=".immi-header-profile-avatar" (clickOutside)="handleProfileClickOutside()"
           class="drop-popup immi-header-profile-dropdown">
         <li>我的私信</li>
@@ -27,3 +27,6 @@
     </div>
   </div>
 </header>
+<ng-template #tplUnLogged>
+  <button routerLink="/profile/auth" style="margin-left: 20px" class="pure-button">登录/注册</button>
+</ng-template>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DynamicModalService} from '../../shared/component/dynamic-modal/dynamic-modal.service';
 import {AvatarCropperModalComponent} from '../../shared/modal/avatar-cropper-modal/avatar-cropper-modal.component';
+import {ProfileService} from "../profile.service";
 
 @Component({
   selector: 'app-account',
@@ -11,6 +12,7 @@ export class AccountComponent implements OnInit {
 
   constructor(
     private dynamicModalService: DynamicModalService,
+    private profileService: ProfileService,
   ) {
   }
 
