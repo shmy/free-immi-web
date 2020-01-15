@@ -14,6 +14,8 @@ import {RichEditorCustomTransform} from './rich-editor-custom.transform';
 import * as quillFocus from 'quill-focus';
 import BlotFormatter from 'quill-blot-formatter';
 import quillEmoji from 'quill-emoji';
+import {PostService} from "../../../post/post.service";
+import {baseUrl} from "../../http-interceptors/noop-interceptor";
 
 const FontStyle = Quill.import('attributors/style/font');
 const SizeStyle = Quill.import('attributors/style/size');
@@ -38,7 +40,8 @@ const RICH_VALUE_ACCESSOR: any = {
   useExisting: forwardRef(() => RichEditorComponent),
   multi: true
 };
-const IMAGE_API_URL = 'https://imgkr.com/api/files/upload';
+
+// const IMAGE_API_URL = 'https://imgkr.com/api/files/upload';
 
 @Component({
   selector: 'app-rich-editor',
@@ -77,6 +80,7 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
 
   constructor(
     private httpClient: HttpClient,
+    private postService: PostService,
     private richEditorCustomTransform: RichEditorCustomTransform,
   ) {
   }
@@ -142,24 +146,15 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
     }
     const file = files[0];
     e.target.value = '';
-    // const fd = new FileReader();
-    // fd.onload = (evt: any) => {
-    //   const range = this.editor.getSelection();
-    //   this.editor.insertEmbed(range.index, 'image', evt.target.result);
-    //   this.showImageTool = false;
-    // };
-    // fd.readAsDataURL(file);
-    const fd = new FormData();
-    fd.append('file', file);
-    this.httpClient.post(IMAGE_API_URL, fd)
-      .subscribe(ret => {
-        // @ts-ignore
-        if (ret.code === 200) {
-          const range = this.editor.getSelection();
-          // @ts-ignore
-          this.editor.insertEmbed(range ? range.index : 0, 'image', ret.data);
-          this.showImageTool = false;
+    this.postService.uploadImageByFile(file)
+      .subscribe(([data, err]) => {
+        if (err) {
+          err.showToast();
+          return;
         }
+        const range = this.editor.getSelection();
+        this.editor.insertEmbed(range ? range.index : 0, 'image', baseUrl + data.imageUrl);
+        this.showImageTool = false;
         this.imageLoading = false;
       });
 

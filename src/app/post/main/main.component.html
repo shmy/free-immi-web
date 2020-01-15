@@ -2,34 +2,15 @@
   <app-immi-header></app-immi-header>
   <div data-flex="dir:left" class="app-layout-container">
     <div data-flex-box="1" class="bg-white padded-10 shadowed">
-      <h3>板块列表</h3>
-      <div data-flex="dir:left" style="flex-wrap: wrap">
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
-        <ng-container *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
-        </ng-container>
+      <ng-container *ngFor="let item of items">
+        <h3>{{item.name}}</h3>
+        <div data-flex="dir:left" style="flex-wrap: wrap">
+          <ng-container *ngFor="let item of item.topics">
+            <ng-container *ngTemplateOutlet="tpl; context: {item: item}"></ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
 
-      </div>
       <div style="text-align: center">
         <!--      加载中...-->
         <app-immi-loading-bar [visible]="loadStatus.isLoading">
@@ -55,13 +36,13 @@
 </div>
 
 <ng-template #tpl let-item="item">
-  <a routerLink="1" data-flex="dir:left" class="post-plate-item">
+  <a [routerLink]="item.id" data-flex="dir:left" class="post-plate-item">
     <div data-flex="dir:left main:center cross:center" class="post-plate-item-logo-wrap">
-      <img class="post-plate-item-logo" [src]="item.logo" alt="">
+      <img class="post-plate-item-logo" src="" alt="">
     </div>
     <div style="margin-left: 10px" data-flex-box="1">
-      <div class="post-plate-item-title">{{item.title}}</div>
-      <div class="post-plate-item-desc">{{item.desc}}</div>
+      <div class="post-plate-item-title">{{item.name}}</div>
+      <div class="post-plate-item-desc">打撒恐惧的撒可怜的撒觉得是浪费的就是开了房间看了多少分负担开始就反倒是</div>
     </div>
   </a>
 </ng-template>

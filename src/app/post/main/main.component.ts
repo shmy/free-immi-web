@@ -28,23 +28,16 @@ export class MainComponent implements OnInit, OnDestroy {
         return this.loadStatus.notLoading;
       }),
       tap(() => {
-        console.log('params')
         this.loadStatus.setLoading();
       }),
-      switchMap(() => {
-        return this.postService.getPostPlateList().pipe(
-          catchError(() => {
-            this.loadStatus.setError();
-            return of(null);
-          })
-        );
-      }),
-    ).subscribe(evt => {
-      if (!evt) {
+      switchMap(() => this.postService.getPostPlateList()),
+    ).subscribe(([data, err]) => {
+      if (err) {
+        err.showToast();
         return;
       }
       this.loadStatus.setLoaded();
-      this.items = evt;
+      this.items = data;
     });
     this.$loadStream.next();
   }

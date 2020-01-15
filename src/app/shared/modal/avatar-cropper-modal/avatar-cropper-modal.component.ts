@@ -3,6 +3,7 @@ import {DynamicModalComponentExtended} from '../../component/dynamic-modal/dynam
 import {switchMap, tap} from 'rxjs/operators';
 import {ProfileService} from '../../../profile/profile.service';
 import {of} from 'rxjs';
+import {PostService} from "../../../post/post.service";
 
 @Component({
   selector: 'app-avatar-cropper',
@@ -13,25 +14,32 @@ export class AvatarCropperModalComponent extends DynamicModalComponentExtended {
   @Input('imageUrl') imageUrl = '';
 
   constructor(
+    private postService: PostService,
     private profileService: ProfileService,
   ) {
     super();
   }
 
   handleCropped(dataURL: string) {
-    of(1).pipe(
+    of(1)
+      .pipe(
       tap(() => {
         this.setBackgroundClickDismiss(false);
         this.setCloseVisible(false);
       }),
-      switchMap(() => {
-        return this.profileService.setAvatar(dataURL);
-      })
+      switchMap(() => this.postService.uploadImageByDataURL(dataURL))
+      // switchMap(() => {
+      //   return this.profileService.setAvatar(dataURL);
+      // })
     )
-      .subscribe(ret => {
-        console.log(ret);
+      .subscribe(([data, err]) => {
         this.setBackgroundClickDismiss(true);
         this.setCloseVisible(true);
+        if (err) {
+          err.showToast();
+          return;
+        }
+        // console.log(data);
         this.close();
         this.profileService.refreshSelfInfo();
         // // @ts-ignore

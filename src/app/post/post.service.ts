@@ -1,257 +1,31 @@
 import {Injectable} from '@angular/core';
-import {fromPromise} from "rxjs/internal-compatibility";
+import {fromPromise} from 'rxjs/internal-compatibility';
+import {HttpClient} from '@angular/common/http';
+import {HasHttpResponseCustomError} from '../shared/http-interceptors/noop-interceptor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor() {
+  constructor(
+    private httpClient: HttpClient,
+  ) {
   }
-
+  public uploadImageByFile(file: File) {
+    const fd = new FormData();
+    fd.append('file', file);
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/images/upload/file', fd);
+  }
+  public uploadImageByDataURL(dataURL: string) {
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/images/upload/base64', {base64: dataURL});
+  }
   public getPostPlateList() {
-    const result = [
-      {
-        logo: 'https://cdn.v2ex.com/navatar/6cdd/60ea/184_large.png?m=1578038442',
-        title: 'Apple 产品交流',
-        desc: '设计了 Apple Watch，iPad，iPhone，iMac 及 MacBook Pro 等电子产品的美国公司。',
-      },
-      {
-        logo: 'https://cdn.v2ex.com/navatar/b53b/3a3d/55_large.png?m=1550138353',
-        title: '游戏',
-        desc: 'Life is short, have more fun.',
-      }, {
-        logo: 'https://cdn.v2ex.com/navatar/c74d/97b0/16_xxlarge.png?m=1577243845',
-        title: '分享发现',
-        desc: '分享你看到的好玩的，有信息量的，欢迎从这里获取灵感。',
-      }
-    ];
-    return fromPromise(new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(result);
-      }, 2000);
-    }));
+    return this.httpClient.get<[any, HasHttpResponseCustomError]>('/topic/group');
   }
 
   public getPostPagingListService(id: string) {
-    console.log('getPostPagingListService');
-    const result = {
-      total: 100,
-      data: [
-        {
-          id: 1,
-          reply_count: 11,
-          updated_at: 1578116965289,
-          title: '买不到返程票，只能把回去的票也退了。',
-          avatar: 'https://pic1.zhimg.com/v2-ef9d53e94f72225bc12c19e0070ba52d_r.jpg',
-          nickname: 'alloc',
-          last_reply_nickname: 'nkcoder'
-        },
-        {
-          id: 2,
-          reply_count: 22,
-          updated_at: 1578116579929,
-          title: '想问问大家天天坐在电脑前，平时是如何保护自己的颈椎呢，最近这两天感觉颈椎痛有些加重了。才 20 岁可不想这么早落病根。',
-          avatar: 'https://pic2.zhimg.com/v2-ba0e453d2708b86d1f088ec28a49b1f7_r.jpg',
-          nickname: '周四',
-          last_reply_nickname: '666'
-        },
-        {
-          id: 3,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://pic4.zhimg.com/v2-213598158238e2f826fc6098370301a7_540x450.jpeg',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 4,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://pic1.zhimg.com/v2-d5964bcbadab90421fcb1d5fbf20eed3_r.jpg',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 5,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 6,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 7,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 8,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 9,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        },
-        {
-          id: 10,
-          reply_count: 33,
-          updated_at: 1578116579929,
-          title: '明年自己注册个外包公司，怎么渠道接项目？',
-          avatar: 'https://cdn.v2ex.com/avatar/851c/973d/181403_normal.png?m=1476685737',
-          nickname: '李三',
-          last_reply_nickname: 'koisf'
-        }
-      ]
-    };
-    return fromPromise(new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(result);
-      }, 1500);
-    }));
+    return this.httpClient.get<[any, HasHttpResponseCustomError]>(`/topic/${id}`);
   }
 
   public getPostDetailById(id: string) {
