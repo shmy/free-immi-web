@@ -1,16 +1,13 @@
 <div class="immi-cropper-wrap">
   <img #imageElement src="https://pic1.zhimg.com/v2-ef9d53e94f72225bc12c19e0070ba52d_r.jpg" alt="">
-
-  <div>
-    <button (click)="handleCropper()">剪切</button>
-    <button (click)="handleZoom(0.1)">放大</button>
-    <button (click)="handleZoom(-0.1)">缩小</button>
-    <button (click)="handleMove(0, -10)">上移</button>
-    <button (click)="handleMove(0, 10)">下移</button>
-    <button (click)="handleMove(-10, 0)">左移</button>
-    <button (click)="handleMove(10, 0)">右移</button>
-    <button (click)="handleReset()">还原</button>
-  </div>
 </div>
-<img [src]="base64" alt="">
-
+<div style="margin-top: 10px" data-flex="dir:left main:justify">
+  <button (click)="handleCropper()">剪切</button>
+  <button (click)="handleZoom(0.1)">放大</button>
+  <button (click)="handleZoom(-0.1)">缩小</button>
+  <button (click)="handleMove(0, -10)">上移</button>
+  <button (click)="handleMove(0, 10)">下移</button>
+  <button (click)="handleMove(-10, 0)">左移</button>
+  <button (click)="handleMove(10, 0)">右移</button>
+  <button (click)="handleReset()">还原</button>
+</div>

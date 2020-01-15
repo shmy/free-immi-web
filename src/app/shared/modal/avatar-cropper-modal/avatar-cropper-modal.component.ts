@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DynamicModalComponentExtended} from '../../component/dynamic-modal/dynamic-modal.component';
+import {switchMap, tap} from 'rxjs/operators';
+import {ProfileService} from '../../../profile/profile.service';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-avatar-cropper',
@@ -8,13 +11,35 @@ import {DynamicModalComponentExtended} from '../../component/dynamic-modal/dynam
 })
 export class AvatarCropperModalComponent extends DynamicModalComponentExtended implements OnInit {
 
-  constructor() {
+  constructor(
+    private profileService: ProfileService,
+  ) {
     super();
   }
 
   ngOnInit() {
-    this.setBackgroundClickDismiss(false);
-    this.setCloseVisible(false);
+
   }
 
+  handleCropped(dataURL: string) {
+    of(1).pipe(
+      tap(() => {
+        this.setBackgroundClickDismiss(false);
+        this.setCloseVisible(false);
+      }),
+      switchMap(() => {
+        return this.profileService.setAvatarService(dataURL);
+      })
+    )
+      .subscribe(ret => {
+        console.log(ret);
+        this.setBackgroundClickDismiss(true);
+        this.setCloseVisible(true);
+        this.close();
+        // // @ts-ignore
+        // if (ret.code === 200) {
+        //  console.log(ret);
+        // }
+      });
+  }
 }

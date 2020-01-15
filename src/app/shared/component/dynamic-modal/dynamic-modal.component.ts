@@ -2,8 +2,8 @@ import {
   AfterViewInit,
   ApplicationRef,
   Component,
-  ComponentFactoryResolver, ComponentRef, Directive,
-  Input, OnInit,
+  ComponentFactoryResolver, Directive,
+  Input,
   ViewChild, ViewContainerRef,
 } from '@angular/core';
 
@@ -22,11 +22,11 @@ export class InsertionDirective {
   templateUrl: './dynamic-modal.component.html',
   styleUrls: ['./dynamic-modal.component.scss']
 })
-export class DynamicModalComponent implements OnInit, AfterViewInit {
+export class DynamicModalComponent implements AfterViewInit {
   constructor(
     private resolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
-    ) {
+  ) {
   }
 
   @ViewChild(InsertionDirective, {static: false}) insertionPoint: InsertionDirective;
@@ -35,6 +35,7 @@ export class DynamicModalComponent implements OnInit, AfterViewInit {
   @Input() dynamicComponent: any;
   @Input() componentRef: any;
   @Input() data: any;
+  @Input() modalDestroyHandler: () => void;
   backgroundClickDismiss = true;
   closeVisible = true;
 
@@ -49,8 +50,9 @@ export class DynamicModalComponent implements OnInit, AfterViewInit {
       try {
         this.appRef.detachView(this.componentRef.hostView);
         this.componentRef.destroy();
-        this.componentRef.location.nativeElement.remove();
+        this.modalDestroyHandler();
       } catch (e) {
+        console.warn(e);
         //
       }
     });
@@ -79,10 +81,6 @@ export class DynamicModalComponent implements OnInit, AfterViewInit {
       this.containerElement.nativeElement.style.opacity = '1';
       this.containerElement.nativeElement.style.marginTop = '0';
     }, 0);
-  }
-
-  ngOnInit(): void {
-
   }
 }
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import Cropper from 'cropperjs';
 
 @Component({
@@ -10,7 +10,7 @@ export class ImmiCropperComponent implements OnInit, AfterViewInit {
 
   @ViewChild('imageElement', {static: true}) imageElement;
   cropper: any;
-  base64 = '';
+  @Output('cropped') croppedEmitter = new EventEmitter<string>();
 
   constructor() {
   }
@@ -28,8 +28,8 @@ export class ImmiCropperComponent implements OnInit, AfterViewInit {
   handleCropper() {
     if (this.cropper) {
       const data = this.cropper.getCroppedCanvas({width: 200, height: 200});
-      const base64 = data.toDataURL({type: 'image/png'});
-      this.base64 = base64;
+      const dataURL = data.toDataURL('image/png');
+      this.croppedEmitter.emit(dataURL);
     }
   }
 
@@ -44,6 +44,7 @@ export class ImmiCropperComponent implements OnInit, AfterViewInit {
       this.cropper.move(x, y);
     }
   }
+
   handleReset() {
     if (this.cropper) {
       this.cropper.reset();

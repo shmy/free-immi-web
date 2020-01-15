@@ -30,6 +30,10 @@ export class DynamicModalService {
     componentRef.instance.componentRef = componentRef;
     componentRef.instance.dynamicComponent = content;
     componentRef.instance.data = data;
+    componentRef.instance.modalDestroyHandler = () => {
+      this.appRef.detachView(componentRef.hostView);
+      componentRef.destroy();
+    };
     this.appRef.attachView(componentRef.hostView);
     componentRef.hostView.detectChanges();
     const {nativeElement} = componentRef.location;
