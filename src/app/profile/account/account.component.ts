@@ -12,7 +12,7 @@ export class AccountComponent implements OnInit {
 
   constructor(
     private dynamicModalService: DynamicModalService,
-    private profileService: ProfileService,
+    public profileService: ProfileService,
   ) {
   }
 

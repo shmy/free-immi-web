@@ -13,7 +13,7 @@ export class ImmiHeaderComponent implements OnInit {
   profilePopIsHide = true;
 
   constructor(
-    private profileService: ProfileService,
+    public profileService: ProfileService,
   ) {
   }
 
