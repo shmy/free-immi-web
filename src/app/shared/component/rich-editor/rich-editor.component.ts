@@ -14,8 +14,10 @@ import {RichEditorCustomTransform} from './rich-editor-custom.transform';
 import * as quillFocus from 'quill-focus';
 import BlotFormatter from 'quill-blot-formatter';
 import quillEmoji from 'quill-emoji';
-import {PostService} from "../../../post/post.service";
-import {baseUrl} from "../../http-interceptors/noop-interceptor";
+import {PostService} from '../../../post/post.service';
+// import {baseUrl} from '../../http-interceptors/noop-interceptor';
+import {CustomImageBlot} from './blot/custom-image.blot';
+import {baseUrl} from '../../http-interceptors/noop-interceptor';
 
 const FontStyle = Quill.import('attributors/style/font');
 const SizeStyle = Quill.import('attributors/style/size');
@@ -24,17 +26,18 @@ SizeStyle.whitelist = ['10px', '12px', '14px', '16px', '18px', '20px'];
 
 Quill.register(FontStyle, true);
 Quill.register(SizeStyle, true);
-Quill.register('modules/focus', quillFocus);
-Quill.register('modules/blotFormatter', BlotFormatter);
-Quill.register(
-  {
-    'formats/emoji': quillEmoji.EmojiBlot,
-    'modules/emoji-toolbar': quillEmoji.ToolbarEmoji,
-    // 'modules/emoji-textarea': quillEmoji.TextAreaEmoji,
-    'modules/emoji-shortname': quillEmoji.ShortNameEmoji,
-  },
-  true,
-);
+// Quill.register('modules/focus', quillFocus);
+// Quill.register('modules/blotFormatter', BlotFormatter);
+Quill.register(CustomImageBlot);
+// Quill.register(
+//   {
+//     'formats/emoji': quillEmoji.EmojiBlot,
+//     'modules/emoji-toolbar': quillEmoji.ToolbarEmoji,
+//     // 'modules/emoji-textarea': quillEmoji.TextAreaEmoji,
+//     'modules/emoji-shortname': quillEmoji.ShortNameEmoji,
+//   },
+//   true,
+// );
 const RICH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RichEditorComponent),
@@ -97,17 +100,16 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
           container: this.toolbar.nativeElement,
           handlers: {
             image: () => this.showImageTool = true,
-            emoji: () => {
-            },
+            // emoji: () => {},
           }
         },
-        focus: {
-          focusClass: 'focused-blot' // Defaults to .focused-blot.
-        },
-        blotFormatter: {},
-        'emoji-toolbar': true,
+        // focus: {
+        //   focusClass: 'focused-blot' // Defaults to .focused-blot.
+        // },
+        // blotFormatter: {},
+        // 'emoji-toolbar': true,
         // 'emoji-textarea': true,
-        'emoji-shortname': true,
+        // 'emoji-shortname': true,
       },
       theme: 'snow',
       scrollingContainer: this.scrollingContainer,
@@ -153,7 +155,12 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
           return;
         }
         const range = this.editor.getSelection();
-        this.editor.insertEmbed(range ? range.index : 0, 'image', baseUrl + data.imageUrl);
+        // this.editor.insertEmbed(range ? range.index : 0, 'image', baseUrl + data.imageUrl);
+        // 自定义Tag
+        this.editor.insertEmbed(range ? range.index : 0, 'immi-img', {
+          src: baseUrl + data.imageUrl,
+          id: data.imageId,
+        });
         this.showImageTool = false;
         this.imageLoading = false;
       });
@@ -169,28 +176,8 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
     }
   }
 
-  private getRichText() {
+  public getRichText() {
     const content = this.editor.container.firstChild.innerHTML;
     return this.richEditorCustomTransform.transform(content);
   }
-
-  // private test() {
-  //   const data = `<p>dsadsadsadsadasd<img src="https://imgkr.cn-bj.ufileos.com/54ea2bf2-68f1-44c6-a192-d9dbb653e6ee.png"></p><p><img src="https://imgkr.cn-bj.ufileos.com/54ea2bf2-68f1-44c6-a192-d9dbb653e6ee.png" /><br></p><p><br></p><p><img src="https://imgkr.cn-bj.ufileos.com/852d9c4a-1340-458a-b05a-ddd3351b12b2.jpg"></p><p><img src="https://imgkr.cn-bj.ufileos.com/694abf7a-6bf2-4f6f-8bec-59b86e286086.jpg"></p><p><br></p>
-  //   <p><img src="https://tpc.googlesyndication.com/simgad/10949952014676677817" /></p><p><br></p><p><br></p>
-  //   <p>&lt;img src="https://tpc.googlesyndication.com/simgad/10949952014676677817" /&gt;</p><p><br></p><p><br></p>
-  //   <p><strong style="font-size: 14px;">ds</strong><span style="font-size: 14px;">ad</span><span style="font-size: 14px; font-family: Hei;">asdadafds</span></p><p>fsd<span style="font-size: 20px; color: rgb(240, 102, 102);">d</span></p><p><span style="font-size: 20px; color: rgb(240, 102, 102);">fds</span><s style="font-size: 20px; color: rgb(240, 102, 102);">fdsf</s></p><p><br></p><p>&lt;img src="https://imgkr.cn-bj.ufileos.com/54ea2bf2-68f1-44c6-a192-d9dbb653e6ee.png"&gt;</p><p><br></p>
-  // `;
-  //   const d = this.richEditorCustomTransform.transform(data);
-  //   console.log(d);
-  //   console.log(this.richEditorCustomTransform.restore(d.content, d.urls));
-  //   // const transformed = `
-  //   // <p>dsadsadasd</p><p>dsa</p><p>dsa<img style="display: none" data-index="0"></p><p><img style="display: none" data-index="1"></p><p><img style="display: none" data-index="2"></p><p><img style="display: none" data-index="3"></p><p><img style="display: none" data-index="4"></p><p><img style="display: none" data-index="5"></p><p><img style="display: none" data-index="6"></p><p><img style="display: none" data-index="7"></p><p><img style="display: none" data-index="8"></p><p><img style="display: none" data-index="9"></p><p><img style="display: none" data-index="10"></p><p><img style="display: none" data-index="11"></p><p><img style="display: none" data-index="12"></p><p><img style="display: none" data-index="13"></p><p><img style="display: none" data-index="14"></p><p><img style="display: none" data-index="15"></p><p><img style="display: none" data-index="16"></p><p><img style="display: none" data-index="17"></p><p><img style="display: none" data-index="18"></p><p><br></p>
-  //   // `;
-  //   // console.log(this.richEditorCustomTransform.restore(transformed, [
-  //   //   'http://localhost:4200/assets/logo.png',
-  //   //   'http://localhost:4200/assets/logo.png',
-  //   //   'http://localhost:4200/assets/logo.png',
-  //   // ]));
-  // }
-
 }

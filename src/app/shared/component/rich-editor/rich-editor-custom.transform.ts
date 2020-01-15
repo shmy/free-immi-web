@@ -4,17 +4,20 @@ import {Injectable} from '@angular/core';
 const restoreImgTagMatchRegExp = /<img.*?(?:>|\/>)/gi;
 // 查找 img 的src
 const extractImgSrcRegExp = /src=\"(.*)\"/;
+// 查找 img 的data-id
+const extractImgDataIdRegExp = /data-id=\"(.*)\"/;
 // 替换成带索引的标签
-const transformImgTagMatcher = (index: number) => `<img style="display: none" data-index="${index}">`;
+const transformImgTagMatcher = (id: string) => `<img data-id="${id}">`;
+
 @Injectable({
   providedIn: 'root'
 })
 export class RichEditorCustomTransform implements IRichTransformInterface {
   // restore image
   restore(content: string, urls: IUrl[] = []) {
-    urls.forEach((item, index) => {
+    urls.forEach((item) => {
       // console.log(item);
-      content = content.replace(transformImgTagMatcher(index), `<img data-height="${item.height}" data-width="${item.width}" src="${item.url}" />`);
+      content = content.replace(transformImgTagMatcher(item.id), `<img data-id="${item.id}" src="${item.path}" />`);
     });
     return content;
   }
@@ -22,19 +25,21 @@ export class RichEditorCustomTransform implements IRichTransformInterface {
   // transform image
   transform(content: string) {
     const matched = content.match(restoreImgTagMatchRegExp);
-    const urls: string[] = [];
+    const imageIds: string[] = [];
     if (matched) {
-      matched.forEach((item, index) => {
-        const srcMatched = item.match(extractImgSrcRegExp);
-        if (srcMatched) {
-          urls.push(srcMatched[1]);
-          content = content.replace(item, transformImgTagMatcher(index));
+      matched.forEach((item) => {
+        // const srcMatched = item.match(extractImgSrcRegExp);
+        const idMatched = item.match(extractImgDataIdRegExp);
+        if (idMatched) {
+          const id = idMatched[1];
+          imageIds.push(id);
+          content = content.replace(item, transformImgTagMatcher(id));
         }
       });
     }
     return {
       content,
-      urls
+      imageIds
     };
   }
 }

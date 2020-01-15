@@ -12,6 +12,11 @@ export class PostService {
     private httpClient: HttpClient,
   ) {
   }
+  // public uploadImageByFile(file: File) {
+  //   const fd = new FormData();
+  //   fd.append('file', file);
+  //   return this.httpClient.post<[any, HasHttpResponseCustomError]>('https://imgkr.com/api/files/upload', fd);
+  // }
   public uploadImageByFile(file: File) {
     const fd = new FormData();
     fd.append('file', file);
@@ -50,5 +55,14 @@ export class PostService {
         resolve(result);
       }, 1000);
     }));
+  }
+
+  public createPost(topicId: string, subject: string, content: string, imageIds: any[]) {
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/post', {
+      topicId,
+      subject,
+      content,
+      imageIds,
+    });
   }
 }

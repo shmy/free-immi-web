@@ -3,9 +3,10 @@
   <div class="app-layout-container pure-form">
     <div style="padding: 10px; box-sizing: border-box">
       <input #titleInput name="title" [(ngModel)]="title" autofocus class="pure-input"
-             style="font-size: 20px; width: 100%" type="text" maxlength="20" placeholder="请输入标题（最多20个字）">
+             style="font-size: 20px;" type="text" maxlength="20" placeholder="请输入标题（最多20个字）">
+      <button (click)="handleSubmit()" class="pure-button">发表</button>
     </div>
-    <app-rich-editor stickyTop="60px" name="content" [scrollingContainer]="scrollingContainer" [(ngModel)]="content"
+    <app-rich-editor #richEditorComponent stickyTop="60px" name="content" [scrollingContainer]="scrollingContainer" [(ngModel)]="content"
                      placeholder="请畅所欲言吧！"></app-rich-editor>
   </div>
 </div>
