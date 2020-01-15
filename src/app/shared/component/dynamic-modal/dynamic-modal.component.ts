@@ -34,7 +34,7 @@ export class DynamicModalComponent implements AfterViewInit {
   @ViewChild('containerElement', {static: true}) containerElement;
   @Input() dynamicComponent: any;
   @Input() componentRef: any;
-  @Input() data: any;
+  @Input() props: {[s: string]: any} = {};
   @Input() modalDestroyHandler: () => void;
   backgroundClickDismiss = true;
   closeVisible = true;
@@ -66,16 +66,18 @@ export class DynamicModalComponent implements AfterViewInit {
       const componentFactory = this.resolver.resolveComponentFactory(this.dynamicComponent);
       const viewContainerRef = this.insertionPoint.viewContainerRef;
       viewContainerRef.clear();
-      //
-      const cref = viewContainerRef.createComponent(componentFactory) as any;
-      cref.instance.data = this.data;
-      cref.instance.close = () => this.close();
-      cref.instance.setBackgroundClickDismiss = (v: boolean) => {
+      const cf = viewContainerRef.createComponent(componentFactory) as any;
+      Object.keys(this.props).forEach((key: string) => {
+        cf.instance[key] = this.props[key];
+      });
+      cf.instance.close = () => this.close();
+      cf.instance.setBackgroundClickDismiss = (v: boolean) => {
         this.backgroundClickDismiss = v;
       };
-      cref.instance.setCloseVisible = (v: boolean) => {
+      cf.instance.setCloseVisible = (v: boolean) => {
         this.closeVisible = v;
       };
+      // tslint:disable-next-line:no-unused-expression
       window.getComputedStyle(this.maskElement.nativeElement).transform;
       this.maskElement.nativeElement.style.opacity = '1';
       this.containerElement.nativeElement.style.opacity = '1';

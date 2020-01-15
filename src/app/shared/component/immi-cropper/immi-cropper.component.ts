@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import Cropper from 'cropperjs';
 
 @Component({
@@ -11,7 +11,7 @@ export class ImmiCropperComponent implements OnInit, AfterViewInit {
   @ViewChild('imageElement', {static: true}) imageElement;
   cropper: any;
   @Output('cropped') croppedEmitter = new EventEmitter<string>();
-
+  @Input('imageUrl') imageUrl = '';
   constructor() {
   }
 

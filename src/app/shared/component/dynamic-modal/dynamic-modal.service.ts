@@ -24,12 +24,12 @@ export class DynamicModalService {
   ) {
   }
 
-  open<T>(content: Content<T>, data: any = {}) {
+  open<T>(content: Content<T>, props: {[s: string]: any} = {}) {
     const factory = this.resolver.resolveComponentFactory(DynamicModalComponent);
     const componentRef = factory.create(this.injector);
     componentRef.instance.componentRef = componentRef;
     componentRef.instance.dynamicComponent = content;
-    componentRef.instance.data = data;
+    componentRef.instance.props = props;
     componentRef.instance.modalDestroyHandler = () => {
       this.appRef.detachView(componentRef.hostView);
       componentRef.destroy();

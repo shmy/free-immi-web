@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DynamicModalComponentExtended} from '../../component/dynamic-modal/dynamic-modal.component';
 import {switchMap, tap} from 'rxjs/operators';
 import {ProfileService} from '../../../profile/profile.service';
@@ -9,16 +9,13 @@ import {of} from 'rxjs';
   templateUrl: './avatar-cropper-modal.component.html',
   styleUrls: ['./avatar-cropper-modal.component.scss']
 })
-export class AvatarCropperModalComponent extends DynamicModalComponentExtended implements OnInit {
+export class AvatarCropperModalComponent extends DynamicModalComponentExtended {
+  @Input('imageUrl') imageUrl = '';
 
   constructor(
     private profileService: ProfileService,
   ) {
     super();
-  }
-
-  ngOnInit() {
-
   }
 
   handleCropped(dataURL: string) {

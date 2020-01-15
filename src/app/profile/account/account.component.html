@@ -1,73 +1,30 @@
 <div class="app-fulled-scroll">
   <app-immi-header></app-immi-header>
-  <div data-flex="dir:left" style="" class="app-layout-container">
-    <div data-flex-box="1" class="bg-white padded-10 shadowed">
-<!--      <app-immi-cropper></app-immi-cropper>-->
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-      <h3>dsakjdakldalkjd</h3>
-    </div>
-    <div class="app-layout-side-bar">
-      <div class="bg-white padded-10 shadowed">
-        常见问题
+  <div class="app-layout-container">
+    <div class="bg-white padded-10 shadowed">
+      <div data-flex="dir:left">
+        <div class="relative" style="height: 120px; width: 120px;">
+          <img style="height: 100%; width: 100%; border-radius: 5px" src="https://avatars3.githubusercontent.com/u/19339440" alt="用户9527的头像">
+          <input accept="image/*" (change)="handleFileChange($event)" #inputFile hidden type="file">
+          <div (click)="inputFile.click()" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, .3); color: #fff" class="avatar-mask">
+            选择文件
+          </div>
+        </div>
+        <div data-flex="dir:top main:right" style="margin-left: 20px" data-flex-box="1">
+          <h3>用户9527</h3>
+          <div>该用户很懒，没有签名。</div>
+        </div>
       </div>
+
     </div>
+    <div style="margin-top: 10px" class="bg-white padded-10 shadowed">
+      动态/帖子/回复
+    </div>
+<!--    <div class="app-layout-side-bar">-->
+<!--      <div class="bg-white padded-10 shadowed">-->
+<!--        常见问题-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 
 </div>

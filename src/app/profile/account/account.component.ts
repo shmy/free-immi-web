@@ -15,7 +15,25 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dynamicModalService.open(AvatarCropperModalComponent, {});
+    // this.dynamicModalService.open(AvatarCropperModalComponent, {});
+  }
+
+  handleFileChange(e) {
+    const files = e.target.files;
+    if (files.length === 0) {
+      return;
+    }
+    const file = files[0];
+    e.target.value = '';
+    const fr = new FileReader();
+    fr.onload = (evt: any) => {
+      this.dynamicModalService.open(AvatarCropperModalComponent, {
+        imageUrl: evt.target.result
+      });
+      // console.log(evt.target.result);
+    };
+    fr.readAsDataURL(file);
+
   }
 
 }
