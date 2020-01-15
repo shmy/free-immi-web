@@ -7,6 +7,8 @@ import {ProfileService} from '../../../profile/profile.service';
   styleUrls: ['./immi-header.component.scss']
 })
 export class ImmiHeaderComponent implements OnInit {
+  // @ts-ignore
+  defaultAvatar = require('./default_avatar.jpg');
   autocompleteIsHide = true;
   profilePopIsHide = true;
 

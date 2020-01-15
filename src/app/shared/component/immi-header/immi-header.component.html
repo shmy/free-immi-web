@@ -17,7 +17,7 @@
     </form>
     <div *ngIf="profileService.logged;else tplUnLogged" style="margin-left: 20px" class="relative">
       <img (click)="profilePopIsHide = !profilePopIsHide" class="immi-header-profile-avatar"
-           [src]="profileService.selfProfile?.avatar" alt="">
+           [src]="profileService.selfProfile?.avatar || defaultAvatar" alt="">
       <ul [hidden]="profilePopIsHide" exclude=".immi-header-profile-avatar" (clickOutside)="handleProfileClickOutside()"
           class="drop-popup immi-header-profile-dropdown">
         <li>我的私信</li>
