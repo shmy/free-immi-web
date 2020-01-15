@@ -14,6 +14,7 @@ import {DynamicModalModule} from './shared/component/dynamic-modal/dynamic-modal
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PostRoutingModule} from './post/post-routing.module';
 import {ListComponent} from './post/list/list.component';
+import {AvatarCropperModalModule} from "./shared/modal/avatar-cropper-modal/avatar-cropper-modal.module";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {ListComponent} from './post/list/list.component';
       closeButton: true,
     }),
     DynamicModalModule,
+    AvatarCropperModalModule,
   ],
   providers: [
     {

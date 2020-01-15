@@ -86,16 +86,16 @@ export class DynamicModalComponent implements OnInit, AfterViewInit {
   }
 }
 
-//
-// export class DynamicModalComponentExtended {
-//   data: any;
-//
-//   close() {
-//   }
-//
-//   setBackgroundClickDismiss(v: boolean) {
-//   }
-//
-//   setCloseVisible(v: boolean) {
-//   }
-// }
+
+export class DynamicModalComponentExtended {
+  data: any;
+
+  close() {
+  }
+
+  setBackgroundClickDismiss(v: boolean) {
+  }
+
+  setCloseVisible(v: boolean) {
+  }
+}

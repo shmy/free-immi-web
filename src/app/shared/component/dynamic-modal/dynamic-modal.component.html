@@ -2,7 +2,7 @@
 </div>
 <div #containerElement class="dynamic-modal-container">
   <div class="dynamic-modal-header">
-    <span  (click)="close()" class="iconfont icon-Close dynamic-modal-close">x</span>
+    <span [hidden]="!closeVisible" (click)="close()" class="iconfont icon-Close dynamic-modal-close">x</span>
   </div>
   <div class="dynamic-modal-body">
     <ng-template appInsertion> </ng-template>
