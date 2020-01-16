@@ -20,7 +20,7 @@ import {CustomImageBlot} from './blot/custom-image.blot';
 import {baseUrl} from '../../http-interceptors/noop-interceptor';
 import {fromPromise} from "rxjs/internal-compatibility";
 import {switchMap} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {Observable, of, zip} from "rxjs";
 
 const FontStyle = Quill.import('attributors/style/font');
 const SizeStyle = Quill.import('attributors/style/size');
@@ -153,9 +153,12 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
     e.target.value = '';
 
     this.postService.getImageSize(file).pipe(
-      switchMap(({width, height}) => this.postService.uploadImageByFile(file, width, height))
+      switchMap(({width, height}) => zip(
+        of({width, height}),
+        this.postService.uploadImageByFile(file)
+      ))
     )
-      .subscribe(([data, err]) => {
+      .subscribe(([{width, height}, [data, err] ]) => {
         if (err) {
           err.showToast();
           return;
@@ -163,10 +166,15 @@ export class RichEditorComponent implements OnInit, AfterViewInit, ControlValueA
         const range = this.editor.getSelection();
         // this.editor.insertEmbed(range ? range.index : 0, 'image', baseUrl + data.imageUrl);
         // 自定义Tag
-        this.editor.insertEmbed(range ? range.index : 0, 'immi-img', {
-          src: baseUrl + data.imageUrl,
+        const index = range ? range.index : 0;
+        this.editor.insertEmbed(index, 'immi-img', {
+          // src: baseUrl + data.data,
+          src: data.data,
           id: data.imageId,
-        });
+          width,
+          height,
+        }, true, Quill.sources.USER);
+        this.editor.setSelection(index + 1, Quill.sources.SILENT);
         this.showImageTool = false;
         this.imageLoading = false;
       });

@@ -13,11 +13,11 @@ export class PostService {
     private httpClient: HttpClient,
   ) {
   }
-  // public uploadImageByFile(file: File) {
-  //   const fd = new FormData();
-  //   fd.append('file', file);
-  //   return this.httpClient.post<[any, HasHttpResponseCustomError]>('https://imgkr.com/api/files/upload', fd);
-  // }
+  public uploadImageByFile(file: File) {
+    const fd = new FormData();
+    fd.append('file', file);
+    return this.httpClient.post<[any, HasHttpResponseCustomError]>('https://imgkr.com/api/files/upload', fd);
+  }
   public getImageSize(fileOrDataURL: File | string): Observable<{ width: number, height: number }> {
 
     return fromPromise(new Promise((resolve, reject) => {
@@ -49,13 +49,13 @@ export class PostService {
       }
     }));
   }
-  public uploadImageByFile(file: File, width, height: number) {
-    const fd = new FormData();
-    fd.append('file', file);
-    fd.append('width', width.toString());
-    fd.append('height', height.toString());
-    return this.httpClient.post<[any, HasHttpResponseCustomError]>('/images/upload/file', fd);
-  }
+  // public uploadImageByFile(file: File, width, height: number) {
+  //   const fd = new FormData();
+  //   fd.append('file', file);
+  //   fd.append('width', width.toString());
+  //   fd.append('height', height.toString());
+  //   return this.httpClient.post<[any, HasHttpResponseCustomError]>('/images/upload/file', fd);
+  // }
   public uploadImageByDataURL(dataURL: string, width, height: number) {
     return this.httpClient.post<[any, HasHttpResponseCustomError]>('/images/upload/base64', {base64: dataURL, width, height});
   }
