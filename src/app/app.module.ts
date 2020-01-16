@@ -17,6 +17,8 @@ import {ListComponent} from './post/list/list.component';
 import {AvatarCropperModalModule} from "./shared/modal/avatar-cropper-modal/avatar-cropper-modal.module";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {NoopInterceptor} from "./shared/http-interceptors/noop-interceptor";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import {NoopInterceptor} from "./shared/http-interceptors/noop-interceptor";
     }),
     DynamicModalModule,
     AvatarCropperModalModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {
