@@ -27,6 +27,8 @@ export class MakeComponent implements OnInit, AfterViewInit {
   }
   async handleSubmit() {
     const { content, imageIds } = this.richEditorComponent.getRichText();
+    // console.log(content, imageIds);
+    // return;
     const topicId = this.activatedRoute.snapshot.paramMap.get('id');
     // console.log(content, imageIds);
     this.postService.createPost(topicId, this.title, content, imageIds)

@@ -74,29 +74,31 @@ export class PostService {
       }
     });
   }
-  public getPostDetailById(id: string) {
+  public getPostDetailById1(id: string) {
     return this.httpClient.get<[any, HasHttpResponseCustomError]>(`/post/${id}`);
   }
-  public getPostDetailById1(id: string) {
+  public getPostDetailById(id: string) {
     const result = {
-      title: '全新單曲【我的新座位】不專心前傳Official Music Video',
+      subject: '全新單曲【我的新座位】不專心前傳Official Music Video',
       content: `
-      <p>dsadsadsadsadasd<img data-id="0"></p><p><img data-id="1"><br></p><p><br></p><p><img data-id="2"></p><p><img data-id="3"></p><p><img data-id="3"></p><p><img data-id="3"></p><p><img data-id="3"></p><p><img data-id="3"></p><p><br></p>
-      <p><img data-id="4"></p><p>dsadsadsadsadasd<img data-id="0"></p><p>dsadsadsadsadasd<img data-id="0"></p><p>dsadsadsadsadasd<img data-id="0"></p><p>dsadsadsadsadasd<img data-id="0"></p><p><br></p><p><br></p>
-      <p>&lt;img src="https://tpc.googlesyndication.com/simgad/10949952014676677817" /&gt;</p><p><br></p><p><br></p>
-      <p><strong style="font-size: 14px;">ds</strong><span style="font-size: 14px;">ad</span><span style="font-size: 14px; font-family: Hei;">asdadafds</span></p><p>fsd<span style="font-size: 20px; color: rgb(240, 102, 102);">d</span></p><p><span style="font-size: 20px; color: rgb(240, 102, 102);">fds</span><s style="font-size: 20px; color: rgb(240, 102, 102);">fdsf</s></p><p><br></p><p>&lt;img src="https://imgkr.cn-bj.ufileos.com/54ea2bf2-68f1-44c6-a192-d9dbb653e6ee.png"&gt;</p><p><br></p>
-    `,
-      urls: [
-        {path: 'https://imgkr.cn-bj.ufileos.com/54ea2bf2-68f1-44c6-a192-d9dbb653e6ee.png', id: 0},
-        {path: 'https://imgkr.cn-bj.ufileos.com/54ea2bf2-68f1-44c6-a192-d9dbb653e6ee.png', id: 1},
-        {path: 'https://imgkr.cn-bj.ufileos.com/852d9c4a-1340-458a-b05a-ddd3351b12b2.jpg', id: 2},
-        {path: 'https://imgkr.cn-bj.ufileos.com/694abf7a-6bf2-4f6f-8bec-59b86e286086.jpg', id: 3},
-        {path: 'https://tpc.googlesyndication.com/simgad/10949952014676677817', id: 4},
+      <p><img data-id="1" data-width="5744" data-height="3230"></p>
+      <p><img data-id="1" data-width="285" data-height="175"></p>
+      <p><img data-id="2" data-width="1060" data-height="400"></p>
+      <p><img data-id="3" data-width="1000" data-height="1000"></p>
+      <p><img data-id="3" data-width="1000" data-height="1000"></p>
+      <p><img data-id="4" data-width="500" data-height="889"></p>
+      <p><img data-id="4" data-width="500" data-height="889"></p>
+        `,
+      images: [
+        {id: 1, path: 'https://pic1.zhimg.com/v2-2dc15037294f11389ade53b71fcdc760_r.jpg'},
+        {id: 2, path: 'https://imgkr.cn-bj.ufileos.com/0153cba7-3ca2-4592-960d-73c44fd77cb3.png'},
+        {id: 3, path: 'https://imgkr.cn-bj.ufileos.com/f9633803-26cd-4f79-bb49-d449bbd50159.jpg'},
+        {id: 4, path: 'https://imgkr.cn-bj.ufileos.com/e4d2de39-0a37-47bf-b1bb-edb070a82ebe.jpg'},
       ],
     };
     return fromPromise(new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(result);
+        resolve([result, null]);
       }, 1000);
     }));
   }

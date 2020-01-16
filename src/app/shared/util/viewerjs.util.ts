@@ -23,3 +23,6 @@ export default (metas: IImageMeta[], index= 0) => {
   // image.click();
   viewer.show();
 };
+export function getPlaceholderImage(width, height: number | string) {
+  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><rect width="100%" height="100%" fill="black" fill-opacity="0.1"/></svg>`;
+}

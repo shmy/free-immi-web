@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ProfileService} from '../../../profile/profile.service';
+import {getPlaceholderImage} from '../../util/viewerjs.util';
+import {DomSanitizer} from "@angular/platform-browser";
+
+console.log(getPlaceholderImage(200, 200))
 
 @Component({
   selector: 'app-immi-header',
@@ -8,12 +12,13 @@ import {ProfileService} from '../../../profile/profile.service';
 })
 export class ImmiHeaderComponent implements OnInit {
   // @ts-ignore
-  defaultAvatar = require('./default_avatar.jpg');
+  defaultAvatar = this.sanitizer.bypassSecurityTrustUrl(getPlaceholderImage(200, 200));
   autocompleteIsHide = true;
   profilePopIsHide = true;
 
   constructor(
     public profileService: ProfileService,
+    public sanitizer: DomSanitizer,
   ) {
   }
 

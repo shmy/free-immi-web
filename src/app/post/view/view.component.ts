@@ -19,8 +19,9 @@ export class ViewComponent implements OnInit, OnDestroy {
   comment = '';
   @ViewChild('contentContainer', {static: false}) contentContainer;
   @ViewChild('container', {static: false}) container;
-  status: LoadStatus = new LoadStatus();
+  loadStatus: LoadStatus = new LoadStatus();
   $getDetailStream = new Subject();
+  contentRendered = false;
 
   constructor(
     private postService: PostService,
@@ -32,7 +33,9 @@ export class ViewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.$getDetailStream.pipe(
       tap(() => {
-        this.status.setLoading();
+
+        this.contentRendered = false;
+        this.loadStatus.setLoading();
       }),
       map(() => {
         const id: string = this.activatedRoute.snapshot.paramMap.get('id');
@@ -41,14 +44,14 @@ export class ViewComponent implements OnInit, OnDestroy {
       switchMap((params) => this.postService.getPostDetailById(params.id)),
     ).subscribe(([data, err]) => {
       if (err) {
-        this.status.setError();
+        this.loadStatus.setError();
         err.showToast();
         return;
       }
       this.subject = data.subject;
       this.content = this.richEditorCustomTransform.restore(data.content, data.images);
       this.afterFetch();
-      this.status.setLoaded();
+      this.loadStatus.setLoaded();
     });
     this.activatedRoute.paramMap.subscribe(() => {
       this.$getDetailStream.next();
@@ -67,7 +70,14 @@ export class ViewComponent implements OnInit, OnDestroy {
         });
         imgLazyLoad(item);
       });
+      setTimeout(() => {
+        this.contentRendered = true;
+      }, 1000 / 60);
     }, 0);
+    setTimeout(() => {
+      // this.contentRendered = true;
+    }, 500);
+
   }
 
   handleClick(e) {

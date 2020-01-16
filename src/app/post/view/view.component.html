@@ -1,15 +1,15 @@
 <div #container class="app-fulled-scroll">
   <app-immi-header></app-immi-header>
   <div data-flex="dir:left" class="app-layout-container">
-    <div data-flex-box="1" class="bg-white padded-10 shadowed">
-      <app-immi-loading-bar [visible]="status.isLoading">
+    <div data-flex-box="1" style="min-height: 100vh" class="bg-white padded-10 shadowed">
+      <app-immi-loading-bar [visible]="loadStatus.isLoading">
           <app-post-view-skeleton></app-post-view-skeleton>
       </app-immi-loading-bar>
-      <div style="text-align: center" *ngIf="status.isError">
+      <div style="text-align: center" *ngIf="loadStatus.isError">
         <span>加载失败</span>&nbsp;
         <button (click)="$getDetailStream.next()" class="pure-button pure-button-primary">点击重试</button>
       </div>
-      <ng-container *ngIf="status.isLoaded">
+      <ng-container *ngIf="loadStatus.isLoaded">
         <div class="relative">
           <h3 title="title" class="post-view-title">{{subject}}</h3>
           <div #contentContainer [innerHTML]="content | domSanitizer"></div>
@@ -19,36 +19,37 @@
 <!--            ruizhixia · 4 小时 52 分钟前 via iPhone · 773 次点击-->
 <!--          </div>-->
         </div>
-        <hr>
-        <div style="margin-top: 10px">
-          <div class="post-view">
-
-            <div class="pure-form" data-flex="dir:left cross:center">
-              <h3 data-flex-box="1">123条回复</h3>
-              <select>
-                <option selected>默认排序</option>
-                <option>按时间排序</option>
-              </select>
-            </div>
-            <app-rich-editor stickyTop="60px" [scrollingContainer]="container" [(ngModel)]="comment"
-                             placeholder="写下你的回复..."></app-rich-editor>
-            <div style="margin-top: 10px; text-align: right">
-              <!--              <div (click)="handleClick($event)" class="heart"></div>-->
-              <!--              &nbsp;&nbsp;-->
-              <!--              <span>😓</span>-->
-              <!--              &nbsp;&nbsp;-->
-              <button class="pure-button pure-button-primary">提交回复</button>
-            </div>
-            <div>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
-              <app-immi-post-comment-item></app-immi-post-comment-item>
+        <div [hidden]="!contentRendered">
+          <hr>
+          <div style="margin-top: 10px">
+            <div class="post-view">
+              <div class="pure-form" data-flex="dir:left cross:center">
+                <h3 data-flex-box="1">123条回复</h3>
+                <select>
+                  <option selected>默认排序</option>
+                  <option>按时间排序</option>
+                </select>
+              </div>
+              <app-rich-editor stickyTop="60px" [scrollingContainer]="container" [(ngModel)]="comment"
+                               placeholder="写下你的回复..."></app-rich-editor>
+              <div style="margin-top: 10px; text-align: right">
+                <!--              <div (click)="handleClick($event)" class="heart"></div>-->
+                <!--              &nbsp;&nbsp;-->
+                <!--              <span>😓</span>-->
+                <!--              &nbsp;&nbsp;-->
+                <button class="pure-button pure-button-primary">提交回复</button>
+              </div>
+              <div>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+                <app-immi-post-comment-item></app-immi-post-comment-item>
+              </div>
             </div>
           </div>
         </div>
