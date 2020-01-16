@@ -31,7 +31,7 @@ const routes: Routes = [
   declarations: [
   ],
   imports: [RouterModule.forRoot(routes, {
-    useHash: true,
+    useHash: false,
   })],
   exports: [RouterModule]
 })
