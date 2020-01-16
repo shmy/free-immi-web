@@ -74,8 +74,10 @@ export class PostService {
       }
     });
   }
-
   public getPostDetailById(id: string) {
+    return this.httpClient.get<[any, HasHttpResponseCustomError]>(`/post/${id}`);
+  }
+  public getPostDetailById1(id: string) {
     const result = {
       title: '全新單曲【我的新座位】不專心前傳Official Music Video',
       content: `

@@ -14,7 +14,7 @@ import imgLazyLoad from '../../shared/directive/img-lazy-load/img-lazy-load';
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit, OnDestroy {
-  title = '';
+  subject = '';
   content = '';
   comment = '';
   @ViewChild('contentContainer', {static: false}) contentContainer;
@@ -38,27 +38,18 @@ export class ViewComponent implements OnInit, OnDestroy {
         const id: string = this.activatedRoute.snapshot.paramMap.get('id');
         return {id};
       }),
-      switchMap((params) => {
-        console.log(params);
-        return this.postService.getPostDetailById(params.id).pipe(
-          catchError(() => {
-            this.status.setError();
-            return of(null);
-          })
-        );
-      }),
-    ).subscribe(
-      evt => {
-        if (!evt) {
-          return;
-        }
-        // @ts-ignore
-        this.title = evt.title;
-        // @ts-ignore
-        this.content = this.richEditorCustomTransform.restore(evt.content, evt.urls);
-        this.afterFetch();
-        this.status.setLoaded();
-      });
+      switchMap((params) => this.postService.getPostDetailById(params.id)),
+    ).subscribe(([data, err]) => {
+      if (err) {
+        this.status.setError();
+        err.showToast();
+        return;
+      }
+      this.subject = data.subject;
+      this.content = this.richEditorCustomTransform.restore(data.content, data.images);
+      this.afterFetch();
+      this.status.setLoaded();
+    });
     this.activatedRoute.paramMap.subscribe(() => {
       this.$getDetailStream.next();
     });
