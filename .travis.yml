@@ -3,6 +3,11 @@ node_js:
   - "12.14.0"
 dist: trusty
 sudo: required
+addons:
+  apt:
+    packages:
+      - sshpass
+      - curl
 branches:
   only:
     - master
@@ -10,11 +15,8 @@ before_script:
   - npm install -g @angular/cli
 script:
   # - ng lint
-  - ng build --aot --prod --base-href https://shmy.github.io/free-immi-web/
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: dist/free-immi-web
-  on:
-    branch: master
+  - npm run build
+after_success:
+  # - cp deploy/nginx.conf dist/nginx.conf
+  # - cp deploy/Dockerfile dist/Dockerfile
+  - sshpass -p "$SSH_PWD" scp -o stricthostkeychecking=no -r ./dist/free-immi-web/* root@$SSH_HOST:/usr/share/nginx/html

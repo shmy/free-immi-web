@@ -34,6 +34,7 @@ export class MainComponent implements OnInit, OnDestroy {
     ).subscribe(([data, err]) => {
       if (err) {
         err.showToast();
+        this.loadStatus.setError();
         return;
       }
       this.loadStatus.setLoaded();

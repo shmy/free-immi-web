@@ -17,9 +17,7 @@
           <ng-container *ngTemplateOutlet="tplLoading"></ng-container>
         </app-immi-loading-bar>
         <div style="text-align: center" *ngIf="loadStatus.isError">
-          <span>加载失败</span>
-          &nbsp;
-          <button (click)="$loadStream.next()" class="pure-button pure-button-primary">点击重试</button>
+          <button (click)="$loadStream.next()" class="pure-button pure-button-primary">加载失败, 点击重试</button>
         </div>
       </div>
     </div>

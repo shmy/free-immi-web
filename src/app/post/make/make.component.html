@@ -1,10 +1,10 @@
 <div #scrollingContainer class="app-fulled-scroll bg-white">
   <app-immi-header></app-immi-header>
   <div class="app-layout-container pure-form">
-    <div style="padding: 10px; box-sizing: border-box">
-      <input #titleInput name="title" [(ngModel)]="title" autofocus class="pure-input"
-             style="font-size: 20px;" type="text" maxlength="20" placeholder="请输入标题（最多20个字）">
-      <button (click)="handleSubmit()" class="pure-button">发表</button>
+    <div data-flex="dir:left" style="padding: 10px; box-sizing: border-box">
+      <input data-flex-box="1" #titleInput name="title" [(ngModel)]="title" autofocus class="pure-input"
+             style="font-size: 20px;" type="text" maxlength="64" placeholder="请输入标题（最多64个字）">
+      <button style="margin-left: 20px" (click)="handleSubmit()" class="pure-button pure-button-primary">发表</button>
     </div>
     <app-rich-editor #richEditorComponent stickyTop="60px" name="content" [scrollingContainer]="scrollingContainer" [(ngModel)]="content"
                      placeholder="请畅所欲言吧！"></app-rich-editor>
