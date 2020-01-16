@@ -14,23 +14,24 @@ function lazyLoadImage(el: HTMLImageElement, cb: () => void) {
   obs.observe(el);
 }
 
-function loadImage(el: HTMLImageElement, url: string, errorPlaceholder: string, loadingPlaceholder: string) {
+function loadImage(el: HTMLImageElement, url: string, errorPlaceholder: string) {
   const img = new Image();
   // @ts-ignore
   img.onload = img.onerror = ({type}) => {
     el.src = type === 'load' ? url : errorPlaceholder;
+    el.classList.add('lazy-loaded');
   };
   img.src = url;
-  el.src = loadingPlaceholder;
+  // el.src = loadingPlaceholder;
 }
 
 export default (el: HTMLImageElement) => {
-  const {lazySrc, lazyError, lazyLoading} = el.dataset;
+  const {lazySrc, lazyError} = el.dataset;
   if (!canLazyLoad()) {
-    loadImage(el, lazySrc, lazyError, lazyLoading);
+    loadImage(el, lazySrc, lazyError);
     return;
   }
   lazyLoadImage(el, () => {
-    loadImage(el, lazySrc, lazyError, lazyLoading);
+    loadImage(el, lazySrc, lazyError);
   });
 };

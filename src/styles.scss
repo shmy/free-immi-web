@@ -39,3 +39,10 @@
     display: none;
   }
 }
+img.lazy-loading {
+  opacity: .3;
+  transition: opacity .4s ease-in;
+}
+img.lazy-loaded {
+  opacity: 1;
+}

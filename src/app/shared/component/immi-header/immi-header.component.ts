@@ -11,7 +11,6 @@ console.log(getPlaceholderImage(200, 200))
   styleUrls: ['./immi-header.component.scss']
 })
 export class ImmiHeaderComponent implements OnInit {
-  // @ts-ignore
   defaultAvatar = this.sanitizer.bypassSecurityTrustUrl(getPlaceholderImage(200, 200));
   autocompleteIsHide = true;
   profilePopIsHide = true;

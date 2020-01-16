@@ -30,9 +30,8 @@ export class RichEditorCustomTransform implements IRichTransformInterface {
         const el = this.createElementFromHTML(imgStr) as HTMLImageElement;
         el.dataset.lazySrc = path;
         el.dataset.lazyError = '';
-        el.dataset.lazyLoading = getPlaceholderImage(el.dataset.width, el.dataset.height);
-        // el.style.width = el.dataset.width + 'px';
-        // el.style.height = el.dataset.height + 'px';
+        el.classList.add('lazy-loading');
+        el.src = getPlaceholderImage(el.dataset.width, el.dataset.height);
         return el.outerHTML;
       });
     });

@@ -70,13 +70,8 @@ export class ViewComponent implements OnInit, OnDestroy {
         });
         imgLazyLoad(item);
       });
-      setTimeout(() => {
-        this.contentRendered = true;
-      }, 1000 / 60);
+      this.contentRendered = true;
     }, 0);
-    setTimeout(() => {
-      // this.contentRendered = true;
-    }, 500);
 
   }
 
