@@ -28,11 +28,11 @@ export class MakeComponent implements OnInit, AfterViewInit {
   async handleSubmit() {
     const { content, imageIds } = this.richEditorComponent.getRichText();
     const topicId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(content, imageIds);
-    // this.postService.createPost(topicId, this.title, content, imageIds)
-    //   .subscribe(([data, err]) => {
-    //     console.log(data, err);
-    //   });
+    // console.log(content, imageIds);
+    this.postService.createPost(topicId, this.title, content, imageIds)
+      .subscribe(([data, err]) => {
+        console.log(data, err);
+      });
   }
 
 }
