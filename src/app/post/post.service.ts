@@ -63,8 +63,16 @@ export class PostService {
     return this.httpClient.get<[any, HasHttpResponseCustomError]>('/topic/group');
   }
 
-  public getPostPagingListService(id: string) {
-    return this.httpClient.get<[any, HasHttpResponseCustomError]>(`/topic/${id}`);
+  public getPostPagingListService(id: string, page: number, sortIndex: number) {
+    const sorts = ['SUBMIT_AT', 'LIKE_COUNT', 'LAST_COMMENT_AT'];
+    const sort = sorts[sortIndex] || sorts[0];
+    return this.httpClient.get<[any, HasHttpResponseCustomError]>(`/topic/${id}/posts`, {
+      params: {
+        pageNum: page.toString(),
+        pageSize: '20',
+        sort,
+      }
+    });
   }
 
   public getPostDetailById(id: string) {

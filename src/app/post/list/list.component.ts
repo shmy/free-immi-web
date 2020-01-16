@@ -54,27 +54,27 @@ export class ListComponent implements OnInit, OnDestroy {
           page: this.page,
         };
       }),
-      switchMap((params) => {
-        console.log(params);
-        const id = this.activatedRoute.snapshot.paramMap.get('id');
-        return this.postService
-          .getPostPagingListService(id)
-          .pipe(
-            catchError(() => {
-              this.page--;
-              this.loadStatus.setError();
-              return of(null);
-            }),
-          );
-      }),
-    ).subscribe(evt => {
-      if (!evt) {
-        return;
+      switchMap((params) => this.postService
+        .getPostPagingListService(params.id, params.page, params.currentTabIndex)),
+    ).subscribe(([data, err]) => {
+        if (err) {
+          this.page--;
+          this.loadStatus.setError();
+          err.showToast();
+          return;
+        }
+        this.loadStatus.setLoaded();
+        // console.log(data)
+        // @ts-ignore
+        if (data.data.length) {
+          this.posts = [...this.posts, ...data.data];
+        }
+        if ((this.page === 1 && this.posts.length === 0) || data.data.length === 0) {
+          this.loadStatus.setNoMore();
+        }
       }
-      this.loadStatus.setLoaded();
-      // @ts-ignore
-      this.posts = [...this.posts, ...evt.data];
-    });
+    )
+    ;
     this.activatedRoute.paramMap.subscribe(() => {
       this.page = 0;
       this.posts = [];

@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://192.168.147.182:8080/api",
+    "target": "https://shmy.tech/api",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

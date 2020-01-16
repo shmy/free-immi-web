@@ -36,11 +36,11 @@
 <ng-template #tpl let-item="item">
   <a [routerLink]="item.id" data-flex="dir:left" class="post-plate-item">
     <div data-flex="dir:left main:center cross:center" class="post-plate-item-logo-wrap">
-      <img class="post-plate-item-logo" src="" alt="">
+      <img class="post-plate-item-logo" [src]="item.logoUrl" alt="">
     </div>
     <div style="margin-left: 10px" data-flex-box="1">
       <div class="post-plate-item-title">{{item.name}}</div>
-      <div class="post-plate-item-desc">打撒恐惧的撒可怜的撒觉得是浪费的就是开了房间看了多少分负担开始就反倒是</div>
+      <div class="post-plate-item-desc">{{item.description}}</div>
     </div>
   </a>
 </ng-template>
